@@ -1,0 +1,11 @@
+{
+  "name": "Surakku",
+  "version": "0.0.1",
+  "description": "Vencord but for slack",
+  "main": "src/index.ts",
+  "author": "Neon <neon@saahild.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
