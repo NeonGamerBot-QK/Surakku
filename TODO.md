@@ -1,0 +1,7 @@
+- [ ] Create injection somehow
+- [ ] Look at Vencord, Better Discord, Redux injection, Other discord mods
+- [ ] Make it build
+- [ ] Get it approved by chrome & firefox
+- [ ] get domain in browser buddy challange (i think thats the name of it)
+- [ ] Get some more plugins added
+- [ ] Work on user api (no types for first relase)
