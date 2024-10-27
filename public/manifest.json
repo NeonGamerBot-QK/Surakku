@@ -1,18 +1,20 @@
 {
-    "manifest_version": 3,
-    "name": "Surakku",
-    "description": "Slack Client Mod",
-    "author": "Neon <neon@saahild.com>",
-    "host_permissions": [
-        "*://*.app.slack.com/*",
-        "https://raw.githubusercontent.com/*"
-    ],
-    "content_scripts": [{
-        "run_at": "document_start",
-        "matches": ["*://*.app.slack.com/*"],
-        "js": ["app/index.js"],
-        "all_frames": true,
-        "world": "ISOLATED"
-    }],
-    "version": "0.0.1"
+  "manifest_version": 3,
+  "name": "Surakku",
+  "description": "Slack Client Mod",
+  "author": "Neon <neon@saahild.com>",
+  "host_permissions": [
+    "*://*.app.slack.com/*",
+    "https://raw.githubusercontent.com/*"
+  ],
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": ["*://*.app.slack.com/*"],
+      "js": ["app/index.js"],
+      "all_frames": true,
+      "world": "ISOLATED"
+    }
+  ],
+  "version": "0.0.1"
 }
