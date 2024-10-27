@@ -1,11 +1,20 @@
 {
-  "name": "Surakku",
+  "name": "surakku",
   "version": "0.0.1",
   "description": "Vencord but for slack",
   "main": "src/index.ts",
   "author": "Neon <neon@saahild.com>",
+  "scripts": {
+    "tsc:build": "tsc --excludeDirectories ./scripts/*",
+    "build": "ts-node scripts/build.ts",
+    "build:watch": "nodemon --exec \"yarn build\""
+  },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^22.8.1",
+    "esbuild": "^0.24.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
 }
