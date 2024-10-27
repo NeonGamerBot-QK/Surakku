@@ -11,5 +11,6 @@ export default [{
         /**
          * CreateAdditonalUserBadge(':crown:', 'Owner', 'This plugin is owned by the owner of this plugin :P', (e) => e.user.displayName ==  )
              */
+            console.log('Owner Badges Plugin Loaded')
     }
 }]

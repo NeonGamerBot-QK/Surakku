@@ -1,3 +1,7 @@
 node_modules
 .env
-
+.direnv
+dist
+build
+target
+.tsbuildinfo
