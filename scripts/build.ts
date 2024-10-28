@@ -12,7 +12,7 @@ const buildDir = path.join(__dirname, "..", "build");
 if (!fs.existsSync(buildDir)) {
   fs.mkdirSync(buildDir);
 } else {
-  fs.rmdirSync(buildDir, { recursive: true });
+  fs.rmSync(buildDir, { recursive: true });
   fs.mkdirSync(buildDir);
 }
 const commonOpts: esbuild.BuildOptions = {

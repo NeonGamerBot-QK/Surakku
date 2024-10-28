@@ -7,14 +7,30 @@
     "*://*.app.slack.com/*",
     "https://raw.githubusercontent.com/*"
   ],
-  "permissions": ["tabs", "cookies"],
+  "permissions": [
+    "cookies",
+    "declarativeNetRequest"
+  ],
   "version": "0.0.1",
   "content_scripts": [
     {
-      "matches": ["*://*.app.slack.com/*"],
-      "js": ["app/index.js"],
+      "matches": [
+        "*://*.app.slack.com/*"
+      ],
+      "js": [
+        "app/index.js"
+      ],
       "all_frames": true,
-      "world": "ISOLATED"
+      "world": "MAIN"
     }
-  ]
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "slack_nocsp",
+        "enabled": true,
+        "path": "dnr.json"
+      }
+    ]
+  }
 }
