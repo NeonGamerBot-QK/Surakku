@@ -1,3 +1,5 @@
+import { devs } from "../util/devs";
+
 /**
  * All plugins exported here are internal plugins.
  * When building on your own you can configure them here.
@@ -7,6 +9,7 @@ export default [
   {
     name: "Owner Badges",
     description: "Adds a little cool badge to the owner of this plugin :P",
+    author: [devs.neon],
     async execute() {
       // what Actually code should look like
       /**
