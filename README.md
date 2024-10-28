@@ -6,9 +6,9 @@ Surakku is a Slack client mod similar to Vencord, BetterDiscord, etc. This proje
 
 ### Features
 
-* Customizable plugins
-* Owner badges
-* Cute animations
+- Customizable plugins
+- Owner badges
+- Cute animations
 
 ### Installation
 
@@ -18,13 +18,13 @@ Surakku is a Slack client mod similar to Vencord, BetterDiscord, etc. This proje
 
 ### Usage
 
-* Load the extension in your browser
-* Enjoy the enhanced Slack experience
+- Load the extension in your browser
+- Enjoy the enhanced Slack experience
 
 ### Development
 
-* Use `yarn build:watch` for development
-* Check the `TODO.md` file for upcoming tasks
+- Use `yarn build:watch` for development
+- Check the `TODO.md` file for upcoming tasks
 
 ### License
 
