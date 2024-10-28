@@ -11,7 +11,7 @@ console.log = (...arguments) => {
 console.log(`Surakku LOADED :P`);
 
 // remove CSP
-document.querySelector('meta[http-equiv]')?.remove()
+document.querySelector("meta[http-equiv]")?.remove();
 // console.log(JsCookie.get());
 //@ts-ignore
 // console.log(
@@ -21,10 +21,10 @@ document.querySelector('meta[http-equiv]')?.remove()
 //   }),
 // );
 const plugins = [internal, misc];
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   for (const pluginCat of plugins) {
     for (const plugin of pluginCat) {
       plugin.execute();
     }
-  }  
-})
+  }
+});
