@@ -1,7 +1,10 @@
 - [ ] Create injection somehow
-- [ ] Look at Vencord, Better Discord, Redux injection, Other discord mods
+- [ ] Look at [Vencord](https://github.com/Vendicated/Vencord), Better Discord, Redux injection,[Shelter](https://github.com/uwu/shelter/) Other discord mods
 - [ ] Make it build
 - [ ] Get it approved by chrome & firefox
 - [ ] get domain in browser buddy challange (i think thats the name of it)
 - [ ] Get some more plugins added
 - [ ] Work on user api (no types for first relase)
+- [ ] Learn about webpack chunks [guide](https://gist.github.com/0xdevalias/8c621c5d09d780b1d321bfdb86d67cdd#react-internals)
+- - [ ] do the same above for **React**, **ReactDOM**, **Redux** and **React Modal**
+- [ ]
