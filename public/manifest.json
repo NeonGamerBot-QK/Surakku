@@ -7,11 +7,8 @@
     "*://*.app.slack.com/*",
     "https://raw.githubusercontent.com/*"
   ],
-  "permissions": [
-    "tabs",
-    "cookies"
-],
-"version": "0.0.1",
+  "permissions": ["tabs", "cookies"],
+  "version": "0.0.1",
   "content_scripts": [
     {
       "run_at": "document_start",
