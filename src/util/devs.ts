@@ -1,3 +1,4 @@
+import * as Avatars from "./Avatars"
 export interface Dev {
   /**
    * What name you want to show up
@@ -18,6 +19,7 @@ export const devs: {
   neon: {
     name: "Neon",
     link: "https://saahild.com",
+    avatar: Avatars.NeonsAvatar,
   },
 };
 export default devs as { [dev: string]: Dev };
