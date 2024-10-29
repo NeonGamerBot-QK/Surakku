@@ -8,7 +8,7 @@ export interface Dev {
    */
   link: string;
   /**
-   * Link to an avatar image (gh avatar)
+   * Inline data img url, please add your image avatar to ./Avatars.ts
    */
   avatar?: string;
 }
