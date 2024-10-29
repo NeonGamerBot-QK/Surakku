@@ -3,6 +3,7 @@ import misc from "./plugins/misc";
 import * as utils from "./util";
 import JsCookie from "js-cookie";
 import { createMenuIcon } from "./util/MenuIcon";
+import {getPatchInternals } from "./util/patches"
 // bind console.log to
 const log0 = console.log;
 //@ts-ignore
@@ -22,12 +23,14 @@ document.querySelector("meta[http-equiv]")?.remove();
 //   }),
 // );
 const plugins = [internal, misc];
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   for (const pluginCat of plugins) {
     for (const plugin of pluginCat) {
       plugin.execute();
     }
   }
+  //@ts-ignore
+window.wbp = await getPatchInternals()
   setTimeout(() => {
     console.log("Creating menu icon...");
     createMenuIcon(
