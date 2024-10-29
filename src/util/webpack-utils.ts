@@ -1,1 +1,1 @@
-import * as Webpack from "webpack"
+import * as Webpack from "webpack";
