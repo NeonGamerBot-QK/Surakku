@@ -1,4 +1,4 @@
-import * as Avatars from "./Avatars"
+import * as Avatars from "./Avatars";
 export interface Dev {
   /**
    * What name you want to show up
