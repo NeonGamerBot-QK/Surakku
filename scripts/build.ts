@@ -22,6 +22,10 @@ const commonOpts: esbuild.BuildOptions = {
     VERSION: JSON.stringify(require("../package.json").version),
     BUILD_TIMESTAMP: JSON.stringify(new Date().toISOString()),
   },
+  loader: {
+    '.png': 'dataurl',
+    '.svg': 'dataurl'
+  },
   format: "iife",
   target: ["esnext"],
   minify: true,
@@ -34,7 +38,8 @@ Promise.all([
     entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
     // platform: "browser",
   }),
-]).then(() => {
+]).then((d) => {
+  console.log(d)
   // return;
   // copy public folder contents to ../build
   exec("cp -r ./public/* ./build", (err, stdout, stderr) => {

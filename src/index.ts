@@ -4,6 +4,7 @@ import * as utils from "./util";
 import JsCookie from "js-cookie";
 import { createMenuIcon } from "./util/MenuIcon";
 import { getPatchInternals } from "./util/patches";
+import { watchUsersForBadges } from "./util/UserBadge";
 // bind console.log to
 const log0 = console.log;
 //@ts-ignore
@@ -31,6 +32,7 @@ window.addEventListener("load", async () => {
   }
   //@ts-ignore
   window.wbp = await getPatchInternals();
+  watchUsersForBadges();
   setTimeout(() => {
     console.log("Creating menu icon...");
     createMenuIcon(
