@@ -1,6 +1,6 @@
 import { devs } from "../util/devs";
 import { CreateUserBadge } from "../util/UserBadge";
-import mydevbadge from "../assets/dev.svg"
+import mydevbadge from "../assets/dev.svg";
 
 /**
  * All plugins exported here are internal plugins.
@@ -19,8 +19,8 @@ export default [
        */
       console.log("Owner Badges Plugin Loaded");
       CreateUserBadge(mydevbadge, `Owner`, `test`, (e) => {
-       return e.id == "U07L45W79E1"
-      })
+        return e.id == "U07L45W79E1";
+      });
     },
   },
 ];
