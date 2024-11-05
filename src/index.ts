@@ -1,5 +1,6 @@
 import internal from "./plugins/internal";
 import misc from "./plugins/misc";
+import hackclub from "./plugins/hackclub";
 import * as utils from "./util";
 import JsCookie from "js-cookie";
 //@ts-ignore
@@ -26,7 +27,7 @@ document.querySelector("meta[http-equiv]")?.remove();
 //     url: "https://app.slack.com",
 //   }),
 // );
-const plugins = [internal, misc];
+const plugins = [internal, misc,hackclub];
 window.addEventListener("load", async () => {
   for (const pluginCat of plugins) {
     for (const plugin of pluginCat) {
