@@ -22,5 +22,5 @@ export default [
         return e.id == "U07L45W79E1";
       });
     },
-  }
+  },
 ];
