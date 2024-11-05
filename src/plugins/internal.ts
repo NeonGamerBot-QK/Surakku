@@ -1,6 +1,7 @@
 import { devs } from "../util/devs";
 import { CreateUserBadge } from "../util/UserBadge";
 import mydevbadge from "../assets/dev.svg";
+import { ModifySidebarChannelIcon, ModifySidebarChannelName } from "../api/ChannelPatch";
 
 /**
  * All plugins exported here are internal plugins.
@@ -22,5 +23,24 @@ export default [
         return e.id == "U07L45W79E1";
       });
     },
-  },
+  }, {
+    name: "Test channel name", 
+    description: "Test channel name",
+    async execute() { 
+      console.log(`Patching channel name`)
+      debugger;
+      ModifySidebarChannelName({
+        id: "C07LEEB50KD",
+        name: (c) => `zeon - ${c.isSelected}`,
+        filter: (c) => {
+          console.log(c, 'sur-ch');
+          return true;
+        }
+      })
+      ModifySidebarChannelIcon({
+        id: "C07LEEB50KD",
+        icon: mydevbadge
+      })
+    }
+  }
 ];
