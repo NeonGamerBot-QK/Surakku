@@ -64,9 +64,8 @@ export function watchSideBarChannels() {
                         const img = document.createElement("img")
                        //@ts-ignore
                         img.src = channel.icon!
-                        // img.style.width = "30px"
-                    
-                        // img.style.height = "30px"
+                        img.style.maxWidth = "30px"
+                        img.style.maxHeight = "30px"
                         el.children[0].innerHTML = ""
                         el.children[0].appendChild(img)
 
