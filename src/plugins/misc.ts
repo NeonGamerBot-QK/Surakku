@@ -1,5 +1,5 @@
 import { devs } from "../util/devs";
-import { patchMessageBar } from '../api/ChatInput'
+import { patchMessageBar } from "../api/ChatInput";
 /**
  * all misc plugins
  *
@@ -265,22 +265,25 @@ export default [
         init();
       })();
     },
-  }, {
+  },
+  {
     name: "TextReplace",
     description: "Replaces text with other text! (message send only)",
     async execute() {
       console.log("TextReplace Plugin Loaded");
       setInterval(() => {
-        console.debug('patch intbv')
+        console.debug("patch intbv");
         patchMessageBar(`text-replace`, () => {
           debugger;
           //@ts-ignore
-          const t = document.querySelector('[aria-describedby*="context_bar_text"]')?.querySelector('p')
+          const t = document
+            .querySelector('[aria-describedby*="context_bar_text"]')
+            ?.querySelector("p");
           //@ts-ignore
-          t.innerText = t.innerText.replace('text to replace', 'replaced text')
+          t.innerText = t.innerText.replace("text to replace", "replaced text");
           //@ts-ignore
-        })
-     }, 50)
-    }
-  }
+        });
+      }, 50);
+    },
+  },
 ];
