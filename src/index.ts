@@ -27,7 +27,7 @@ document.querySelector("meta[http-equiv]")?.remove();
 //     url: "https://app.slack.com",
 //   }),
 // );
-const plugins = [internal, misc,hackclub];
+const plugins = [internal, misc, hackclub];
 window.addEventListener("load", async () => {
   for (const pluginCat of plugins) {
     for (const plugin of pluginCat) {
@@ -40,10 +40,6 @@ window.addEventListener("load", async () => {
   watchSideBarChannels();
   setTimeout(() => {
     console.log("Creating menu icon...");
-    createMenuIcon(
-      zeonAvatar,
-      "Activity",
-      () => alert("todo: popup-window"),
-    );
+    createMenuIcon(zeonAvatar, "Activity", () => alert("todo: popup-window"));
   }, 5000);
 });
