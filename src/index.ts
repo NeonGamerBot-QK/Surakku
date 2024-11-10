@@ -9,6 +9,7 @@ import { createMenuIcon } from "./util/MenuIcon";
 import { getPatchInternals } from "./util/patches";
 import { watchUsersForBadges } from "./util/UserBadge";
 import { watchSideBarChannels } from "./api/ChannelPatch";
+import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
 // bind console.log to
 const log0 = console.log;
 //@ts-ignore
@@ -36,10 +37,20 @@ window.addEventListener("load", async () => {
   }
   //@ts-ignore
   window.wbp = await getPatchInternals();
-  watchUsersForBadges();
-  watchSideBarChannels();
+  // watchUsersForBadges();
+  // watchSideBarChannels();
+  addWatcher(watchUsersForBadges)
+  addWatcher(watchSideBarChannels)
+  listenForAllInters()
   setTimeout(() => {
     console.log("Creating menu icon...");
-    createMenuIcon(zeonAvatar, "Activity", () => alert("todo: popup-window"));
+    createMenuIcon(zeonAvatar, "Activity", () => {
+      const div = document.createElement("div");
+      
+      // div.onclick = () => {
+      //   div.remove();
+      // };
+      document.body.appendChild(div);
+    });
   }, 5000);
 });

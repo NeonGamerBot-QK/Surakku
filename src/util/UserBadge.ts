@@ -1,5 +1,5 @@
 export function watchUsersForBadges() {
-  const inter = setInterval(() => {
+  // const inter = setInterval(() => {
     const d = Array.from(document.querySelectorAll("[data-message-sender]"));
     const ud = d.map((e) => {
       let d = {
@@ -25,8 +25,8 @@ export function watchUsersForBadges() {
         }
       }
     }
-  }, 50);
-  return inter;
+  // }, 50);
+  // return inter;
 }
 export const badges: any = [];
 export function CreateUserBadge(

@@ -29,7 +29,7 @@ export function ModifySidebarChannelIcon(ops: IconChannelPatch) {
   channelsToModify.push(ops);
 }
 export function watchSideBarChannels() {
-  setInterval(() => {
+  // setInterval(() => {
     const sidebarChannels: RawChannel[] = Array.from(
       document.querySelectorAll("[data-qa-channel-sidebar-channel-id]"),
     ).map((rc) => {
@@ -96,5 +96,5 @@ export function watchSideBarChannels() {
         }
       }
     }
-  }, 50);
+  // }, 50);
 }
