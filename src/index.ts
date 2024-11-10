@@ -39,14 +39,14 @@ window.addEventListener("load", async () => {
   window.wbp = await getPatchInternals();
   // watchUsersForBadges();
   // watchSideBarChannels();
-  addWatcher(watchUsersForBadges)
-  addWatcher(watchSideBarChannels)
-  listenForAllInters()
+  addWatcher(watchUsersForBadges);
+  addWatcher(watchSideBarChannels);
+  listenForAllInters();
   setTimeout(() => {
     console.log("Creating menu icon...");
     createMenuIcon(zeonAvatar, "Activity", () => {
       const div = document.createElement("div");
-      
+
       // div.onclick = () => {
       //   div.remove();
       // };
