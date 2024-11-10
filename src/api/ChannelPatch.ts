@@ -30,71 +30,67 @@ export function ModifySidebarChannelIcon(ops: IconChannelPatch) {
 }
 export function watchSideBarChannels() {
   // setInterval(() => {
-    const sidebarChannels: RawChannel[] = Array.from(
-      document.querySelectorAll("[data-qa-channel-sidebar-channel-id]"),
-    ).map((rc) => {
-      rc.setAttribute("data-touched-by-surakku", "true");
-      return {
-        type: rc.getAttribute("data-qa-channel-sidebar-channel-type")!,
-        id: rc.getAttribute("data-qa-channel-sidebar-channel-id")!,
-        name: rc.getAttribute("data-qa-channel-sidebar-channel-name")!,
-        userCount: parseInt(
-          rc.getAttribute("data-qa-channel-sidebar-channel-user-count")!,
-        ),
-        sectionChannelIndex: parseInt(
-          rc.getAttribute(
-            "data-qa-channel-sidebar-channel-section-channel-index",
-          )!,
-        ),
-        isSelected: Boolean(
-          rc.getAttribute("data-qa-channel-sidebar-channel-is-selected")!,
-        ),
-        isMuted: Boolean(
-          rc.getAttribute("data-qa-channel-sidebar-channel-is-muted")!,
-        ),
-        sectionId: rc.getAttribute(
-          "data-qa-channel-sidebar-channel-section-id",
+  const sidebarChannels: RawChannel[] = Array.from(
+    document.querySelectorAll("[data-qa-channel-sidebar-channel-id]"),
+  ).map((rc) => {
+    rc.setAttribute("data-touched-by-surakku", "true");
+    return {
+      type: rc.getAttribute("data-qa-channel-sidebar-channel-type")!,
+      id: rc.getAttribute("data-qa-channel-sidebar-channel-id")!,
+      name: rc.getAttribute("data-qa-channel-sidebar-channel-name")!,
+      userCount: parseInt(
+        rc.getAttribute("data-qa-channel-sidebar-channel-user-count")!,
+      ),
+      sectionChannelIndex: parseInt(
+        rc.getAttribute(
+          "data-qa-channel-sidebar-channel-section-channel-index",
         )!,
-        isStarred: Boolean(
-          rc.getAttribute("data-qa-channel-sidebar-channel-is-starred")!,
-        ),
-        isMe: Boolean(
-          rc.getAttribute("data-qa-channel-sidebar-channel-is-me")!,
-        ),
-      };
-    });
-    for (const channel of channelsToModify) {
-      const sidebarChannel = sidebarChannels.find((sc) => sc.id === channel.id);
-      if (
-        sidebarChannel && channel.filter ? channel.filter(sidebarChannel) : true
-      ) {
-        if ("name" in channel) {
-          const el = document.querySelector(
-            `[data-qa-channel-sidebar-channel-id="${channel.id}"]`,
-          );
-          if (el && typeof channel.name === "string") {
-            //@ts-ignore
-            el.children[1].children[0].innerText = channel.name;
-          } else {
-            el.children[1].children[0].innerText = channel.name(sidebarChannel);
-          }
-        } else if ("icon" in channel) {
-          const el = document.querySelector(
-            `[data-qa-channel-sidebar-channel-id="${channel.id}"]`,
-          );
-          if (el) {
-            //@ts-ignore
-            // el.setAttribute("src", channel.icon)
-            const img = document.createElement("img");
-            //@ts-ignore
-            img.src = channel.icon!;
-            img.style.maxWidth = "30px";
-            img.style.maxHeight = "30px";
-            el.children[0].innerHTML = "";
-            el.children[0].appendChild(img);
-          }
+      ),
+      isSelected: Boolean(
+        rc.getAttribute("data-qa-channel-sidebar-channel-is-selected")!,
+      ),
+      isMuted: Boolean(
+        rc.getAttribute("data-qa-channel-sidebar-channel-is-muted")!,
+      ),
+      sectionId: rc.getAttribute("data-qa-channel-sidebar-channel-section-id")!,
+      isStarred: Boolean(
+        rc.getAttribute("data-qa-channel-sidebar-channel-is-starred")!,
+      ),
+      isMe: Boolean(rc.getAttribute("data-qa-channel-sidebar-channel-is-me")!),
+    };
+  });
+  for (const channel of channelsToModify) {
+    const sidebarChannel = sidebarChannels.find((sc) => sc.id === channel.id);
+    if (
+      sidebarChannel && channel.filter ? channel.filter(sidebarChannel) : true
+    ) {
+      if ("name" in channel) {
+        const el = document.querySelector(
+          `[data-qa-channel-sidebar-channel-id="${channel.id}"]`,
+        );
+        if (el && typeof channel.name === "string") {
+          //@ts-ignore
+          el.children[1].children[0].innerText = channel.name;
+        } else {
+          el.children[1].children[0].innerText = channel.name(sidebarChannel);
+        }
+      } else if ("icon" in channel) {
+        const el = document.querySelector(
+          `[data-qa-channel-sidebar-channel-id="${channel.id}"]`,
+        );
+        if (el) {
+          //@ts-ignore
+          // el.setAttribute("src", channel.icon)
+          const img = document.createElement("img");
+          //@ts-ignore
+          img.src = channel.icon!;
+          img.style.maxWidth = "30px";
+          img.style.maxHeight = "30px";
+          el.children[0].innerHTML = "";
+          el.children[0].appendChild(img);
         }
       }
     }
+  }
   // }, 50);
 }
