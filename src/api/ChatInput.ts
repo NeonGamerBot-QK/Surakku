@@ -1,4 +1,6 @@
-export function patchMessageBar(id: string, cb: () => void) {
+// failed to patch the messsage bar for 'keydown' (enter button) so i will be replacing that will LIVE update content
+// interval failed as well so ig gl
+export function patchMessageBar(id: string, cb: (str?: string) => void) {
   if (!document.querySelector('[aria-describedby*="context_bar_text"]'))
     return console.debug(`Couldn't find the message bar`, `sur`);
   if (!document.querySelector('[data-qa="texty_send_button"]'))
@@ -15,11 +17,11 @@ export function patchMessageBar(id: string, cb: () => void) {
       ?.setAttribute("touched-" + id, "true");
     document
       .querySelector('[aria-describedby*="context_bar_text"]')!
-      .addEventListener("onkeydown", (e: any) => {
-        console.debug(`#onkeydown`);
+      .addEventListener("keydown", (e: any) => {
+        console.log(`#onkeydown`, e);
         if (e.key == "Enter" && !e.shiftKey) {
           e.preventDefault();
-          cb();
+          cb(e.target.value);
         }
       });
   }
@@ -37,3 +39,12 @@ export function patchMessageBar(id: string, cb: () => void) {
       ?.addEventListener("click", cb);
   }
 }
+// let oldValue:string | null = null;
+// export function patchMessageBar(id: string, cb: (str?: string) => void) {
+//   let messageBar = document.querySelector('[aria-describedby*="context_bar_text"]');
+//   if (!oldValue) oldValue = messageBar?.innerText;
+//   if(oldValue !== messageBar?.innerText) {
+//     oldValue = messageBar?.innerText;
+//     cb(oldValue);
+//   }
+// }
