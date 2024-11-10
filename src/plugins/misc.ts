@@ -273,7 +273,7 @@ export default [
       console.log("TextReplace Plugin Loaded");
       setInterval(() => {
         patchMessageBar(`text-replace`, (str) => {
-          console.log(str, 'before debug')
+          console.log(str, "before debug");
           //@ts-ignore
           const t = document
             .querySelector('[aria-describedby*="context_bar_text"]')
@@ -281,7 +281,11 @@ export default [
           console.log(t?.innerText);
           debugger;
           //@ts-ignore
-          if(t?.innerText.includes("text to replace")) t.innerText = t.innerText.replace("text to replace", "replaced text");
+          if (t?.innerText.includes("text to replace"))
+            t.innerText = t.innerText.replace(
+              "text to replace",
+              "replaced text",
+            );
           //@ts-ignore
         });
       }, 50);
