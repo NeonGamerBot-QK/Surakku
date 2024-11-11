@@ -4,5 +4,4 @@
 
 export function createSettingsTab() {
   //TODO: im eepy
-  
 }
