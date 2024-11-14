@@ -1,6 +1,9 @@
 import { devs } from "../util/devs";
 import { CreateUserBadge } from "../util/UserBadge";
 import mydevbadge from "../assets/dev.svg";
+import zeonAvatar from "./assets/zeon.png";
+
+import { patchInSettingsElement, SettingsTab } from "../api/Settings";
 
 /**
  * All plugins exported here are internal plugins.
@@ -22,5 +25,21 @@ export default [
         return e.id == "U07L45W79E1";
       });
     },
-  },
-];
+  }, {
+    name: "Settings Patch",
+    description: "The settings for surakku",
+    author: [devs.neon],
+    async execute() {
+      patchInSettingsElement({
+        name: "Surakku",
+        id: "surakku",
+        icon: zeonAvatar,
+        onOpen() {
+          const div = document.createElement('div')
+          div.innerHTML = "todo"
+          return div
+        },
+      } satisfies SettingsTab);
+    }
+  }
+] ;

@@ -3,10 +3,9 @@
  */
 
 export function createSettingsTabElement(
-  id: string,
-  name: string,
-  icon: string,
+  data: SettingsTab,
 ) {
+  const { id, name, icon, onOpen } = data;
   //TODO: im eepy
   const settingsTab = document.createElement("button");
   settingsTab.classList.add(
@@ -24,9 +23,15 @@ export function createSettingsTabElement(
   const iconDiv = document.createElement("div");
   iconDiv.classList.add("c-tabs__tab_icon--left");
   iconDiv.setAttribute("data-qa", "tabs_item_render_icon");
+ if(icon) {
   const iconImg = document.createElement("img");
   iconImg.src = icon;
+  if(!data.doNotShrinkIcon) {
+    iconImg.style.width = "16px";
+    iconImg.style.height = "16px";
+  }
   iconDiv.appendChild(iconImg);
+ }
   const span = document.createElement("span");
   span.classList.add("c-tabs__tab_content");
   const spanText = document.createElement("span");
@@ -39,6 +44,7 @@ export function createSettingsTabElement(
 export interface SettingsTab {
   name: string;
   id: string;
+  doNotShrinkIcon?: boolean;
   icon?: string;
   // return a div with xyz content
   onOpen: () => HTMLDivElement | string;
@@ -54,15 +60,23 @@ export function watchForSettings() {
   const settingsTab = document.getElementById("notifications")?.parentElement;
   if (!settingsTab) return;
   for (const d of patchedSettings) {
-    const el = createSettingsTabElement(d.id, d.name, d.icon || "");
+    if(document.getElementById(`settings-${d.id}`)) continue;
+    const el = createSettingsTabElement(d);
     el.addEventListener("click", () => {
       const content = d.onOpen();
-      // if (typeof content === 'string') {
-      //   settingsTab.innerHTML = content;
-      // } else {
-      //   settingsTab.innerHTML = '';
-      //   settingsTab.appendChild(content);
-      // }xy
+      // first, lets go to the notifications tab
+      document.getElementById("notifications")?.click();
+      // then clear active tab classname
+      document.querySelector('#notifications')!.className = "c-button-unstyled c-tabs__tab js-tab c-tabs__tab--full_width";
+      const el = document.querySelector(`[data-qa="prefs_section_container"]`)!
+      if (typeof content === 'string') {
+        el.innerHTML = content;
+      } else {
+       el.innerHTML = ""
+       el.append(content)
+        // settingsTab.innerHTML = '';
+        // settingsTab.appendChild(content);
+      }
     });
     settingsTab.append(el);
   }

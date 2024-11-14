@@ -2,14 +2,13 @@ import internal from "./plugins/internal";
 import misc from "./plugins/misc";
 import hackclub from "./plugins/hackclub";
 import * as utils from "./util";
-import JsCookie from "js-cookie";
 //@ts-ignore
-import zeonAvatar from "./assets/zeon.png";
 import { createMenuIcon } from "./util/MenuIcon";
 import { getPatchInternals } from "./util/patches";
 import { watchUsersForBadges } from "./util/UserBadge";
 import { watchSideBarChannels } from "./api/ChannelPatch";
 import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
+import { createSettingsTabElement, patchInSettingsElement, SettingsTab, watchForSettings } from "./api/Settings";
 // bind console.log to
 const log0 = console.log;
 //@ts-ignore
@@ -39,18 +38,21 @@ window.addEventListener("load", async () => {
   window.wbp = await getPatchInternals();
   // watchUsersForBadges();
   // watchSideBarChannels();
+
+  // setTimeout(() => {
+  //   console.log("Creating menu icon...");
+  //   createMenuIcon(zeonAvatar, "Activity", () => {
+  //     const div = document.createElement("div");
+
+  //     // div.onclick = () => {
+  //     //   div.remove();
+  //     // };
+  //     document.body.appendChild(div);
+  //   });
+  // }, 5000);
+
   addWatcher(watchUsersForBadges);
   addWatcher(watchSideBarChannels);
+ addWatcher(watchForSettings)
   listenForAllInters();
-  setTimeout(() => {
-    console.log("Creating menu icon...");
-    createMenuIcon(zeonAvatar, "Activity", () => {
-      const div = document.createElement("div");
-
-      // div.onclick = () => {
-      //   div.remove();
-      // };
-      document.body.appendChild(div);
-    });
-  }, 5000);
 });
