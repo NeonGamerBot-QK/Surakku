@@ -25,7 +25,8 @@ export default [
         return e.id == "U07L45W79E1";
       });
     },
-  }, {
+  },
+  {
     name: "Settings Patch",
     description: "The settings for surakku",
     author: [devs.neon],
@@ -35,11 +36,11 @@ export default [
         id: "surakku",
         icon: zeonAvatar,
         onOpen() {
-          const div = document.createElement('div')
-          div.innerHTML = "todo"
-          return div
+          const div = document.createElement("div");
+          div.innerHTML = "todo";
+          return div;
         },
       } satisfies SettingsTab);
-    }
-  }
-] ;
+    },
+  },
+];
