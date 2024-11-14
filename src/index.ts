@@ -8,7 +8,12 @@ import { getPatchInternals } from "./util/patches";
 import { watchUsersForBadges } from "./util/UserBadge";
 import { watchSideBarChannels } from "./api/ChannelPatch";
 import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
-import { createSettingsTabElement, patchInSettingsElement, SettingsTab, watchForSettings } from "./api/Settings";
+import {
+  createSettingsTabElement,
+  patchInSettingsElement,
+  SettingsTab,
+  watchForSettings,
+} from "./api/Settings";
 // bind console.log to
 const log0 = console.log;
 //@ts-ignore
@@ -53,6 +58,6 @@ window.addEventListener("load", async () => {
 
   addWatcher(watchUsersForBadges);
   addWatcher(watchSideBarChannels);
- addWatcher(watchForSettings)
+  addWatcher(watchForSettings);
   listenForAllInters();
 });
