@@ -1,7 +1,61 @@
 /**
- * <button class="c-button-unstyled c-tabs__tab js-tab c-tabs__tab--full_width" id="t" aria-haspopup="false" role="tab" aria-selected="false" tabindex="-1" type="button"><div class="c-tabs__tab_icon--left" data-qa="tabs_item_render_icon"><svg data-0ko="true" data-qa="settings" aria-hidden="true" viewBox="0 0 20 20" class=""><path fill="currentColor" fill-rule="evenodd" d="m9.151 3.676.271-1.108a2.5 2.5 0 0 1 1.156 0l.271 1.108a2 2 0 0 0 3.022 1.252l.976-.592a2.5 2.5 0 0 1 .817.817l-.592.975a2 2 0 0 0 1.252 3.023l1.108.27c.09.38.09.777 0 1.157l-1.108.27a2 2 0 0 0-1.252 3.023l.592.975a2.5 2.5 0 0 1-.817.818l-.976-.592a2 2 0 0 0-3.022 1.251l-.271 1.109a2.5 2.5 0 0 1-1.156 0l-.27-1.108a2 2 0 0 0-3.023-1.252l-.975.592a2.5 2.5 0 0 1-.818-.818l.592-.975a2 2 0 0 0-1.252-3.022l-1.108-.271a2.5 2.5 0 0 1 0-1.156l1.108-.271a2 2 0 0 0 1.252-3.023l-.592-.975a2.5 2.5 0 0 1 .818-.817l.975.592A2 2 0 0 0 9.15 3.676m2.335-2.39a4 4 0 0 0-2.972 0 .75.75 0 0 0-.45.518l-.372 1.523-.004.018a.5.5 0 0 1-.758.314l-.016-.01-1.34-.813a.75.75 0 0 0-.685-.048 4 4 0 0 0-2.1 2.1.75.75 0 0 0 .047.685l.814 1.34.01.016a.5.5 0 0 1-.314.759l-.018.004-1.523.372a.75.75 0 0 0-.519.45 4 4 0 0 0 0 2.971.75.75 0 0 0 .519.45l1.523.373.018.004a.5.5 0 0 1 .314.758l-.01.016-.814 1.34a.75.75 0 0 0-.048.685 4 4 0 0 0 2.101 2.1.75.75 0 0 0 .685-.048l1.34-.813.016-.01a.5.5 0 0 1 .758.314l.004.018.372 1.523a.75.75 0 0 0 .45.518 4 4 0 0 0 2.972 0 .75.75 0 0 0 .45-.518l.372-1.523.004-.018a.5.5 0 0 1 .758-.314l.016.01 1.34.813a.75.75 0 0 0 .685.049 4 4 0 0 0 2.101-2.101.75.75 0 0 0-.048-.685l-.814-1.34-.01-.016a.5.5 0 0 1 .314-.758l.018-.004 1.523-.373a.75.75 0 0 0 .519-.45 4 4 0 0 0 0-2.97.75.75 0 0 0-.519-.45l-1.523-.373-.018-.004a.5.5 0 0 1-.314-.759l.01-.015.814-1.34a.75.75 0 0 0 .048-.685 4 4 0 0 0-2.101-2.101.75.75 0 0 0-.685.048l-1.34.814-.016.01a.5.5 0 0 1-.758-.315l-.004-.017-.372-1.524a.75.75 0 0 0-.45-.518M8 10a2 2 0 1 1 4 0 2 2 0 0 1-4 0m2-3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7" clip-rule="evenodd"></path></svg></div><span class="c-tabs__tab_content"><span class="">Test</span></span></button>
+ * <button class="c-button-unstyled c-tabs__tab js-tab c-tabs__tab--full_width" id="t" aria-haspopup="false" role="tab" aria-selected="false" tabindex="-1" type="button"><div class="c-tabs__tab_icon--left" data-qa="tabs_item_render_icon"><svg data-0ko="true" data-qa="settings" aria-hidden="true" viewBox="0 0 20 20" class=""><path fill="currentColor" fill-rule="evenodd" d="" clip-rule="evenodd"></path></svg></div><span class="c-tabs__tab_content"><span class="">Test</span></span></button>
  */
 
-export function createSettingsTab() {
+export function createSettingsTabElement(id:string, name:string, icon:string) {
   //TODO: im eepy
+  const settingsTab = document.createElement('button');
+  settingsTab.classList.add('c-button-unstyled', 'c-tabs__tab', 'js-tab', 'c-tabs__tab--full_width');
+  settingsTab.id = `settings-${id}`;
+  settingsTab.setAttribute('aria-haspopup', 'false');
+  settingsTab.setAttribute('role', 'tab');
+  settingsTab.setAttribute('aria-selected', 'false');
+  settingsTab.setAttribute('tabindex', '-1');
+  settingsTab.setAttribute('type', 'button');
+  const iconDiv = document.createElement('div');
+  iconDiv.classList.add('c-tabs__tab_icon--left');
+  iconDiv.setAttribute('data-qa', 'tabs_item_render_icon');
+  const iconImg = document.createElement('img');
+  iconImg.src = icon;
+  iconDiv.appendChild(iconImg);
+  const span = document.createElement('span');
+  span.classList.add('c-tabs__tab_content');
+  const spanText = document.createElement('span');
+  spanText.textContent = name;
+  span.appendChild(spanText);
+  settingsTab.appendChild(iconDiv);
+  settingsTab.appendChild(span);
+  return settingsTab;
+}
+export interface SettingsTab { 
+  name: string;
+  id: string;
+  icon?: string;
+  // return a div with xyz content
+  onOpen: () => HTMLDivElement | string;
+}
+export const patchedSettings:SettingsTab[] = [];
+export function patchInSettingsElement(data: SettingsTab) {
+  patchedSettings.push(data);
+}
+export function patchInSettingsElements(data: SettingsTab[]) {
+  patchedSettings.push(...data);
+}
+export function watchForSettings() {
+  const settingsTab = document.getElementById('notifications')?.parentElement
+  if (!settingsTab) return;
+  for (const d of patchedSettings) {
+    const el = createSettingsTabElement(d.id, d.name, d.icon || '');
+    el.addEventListener('click', () => {
+      const content = d.onOpen();
+      // if (typeof content === 'string') {
+      //   settingsTab.innerHTML = content;
+      // } else {
+      //   settingsTab.innerHTML = '';
+      //   settingsTab.appendChild(content);
+      // }xy
+    });
+    settingsTab.append(el)
+  }
+  
 }
