@@ -8,6 +8,7 @@ export default [
   {
     name: "Oneko :3",
     description: "A cute little cat that follows your cursor :3",
+    author: [devs.neon],
     async execute() {
       // below is the oneko code
       // oneko.js: https://github.com/adryd325/oneko.js/blob/b323d71126726e4487c10f0d75fc47ac37ead11c/oneko.js
@@ -269,6 +270,7 @@ export default [
   {
     name: "TextReplace",
     description: "Replaces text with other text! (message send only)",
+    author: [devs.neon],
     async execute() {
       console.log("TextReplace Plugin Loaded");
       setInterval(() => {

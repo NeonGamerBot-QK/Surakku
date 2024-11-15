@@ -32,8 +32,15 @@ document.querySelector("meta[http-equiv]")?.remove();
 //     url: "https://app.slack.com",
 //   }),
 // );
-const plugins = [internal, misc, hackclub];
+const plugins: utils.Plugin[][] = [internal.map((d: utils.Plugin) => {
+  d.required_for_startup = true;
+  return d
+}) as utils.Plugin[], misc, hackclub];
 window.addEventListener("load", async () => {
+  //@ts-ignore
+  window.Surakku = {
+    plugins,
+  }
   for (const pluginCat of plugins) {
     for (const plugin of pluginCat) {
       plugin.execute();
