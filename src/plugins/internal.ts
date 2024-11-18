@@ -54,11 +54,13 @@ export default [
           innerPlugins.style.display = "grid";
           innerPlugins.style.gridTemplateColumns = "1fr 1fr";
           //@ts-ignore
-          for (const cat of window.Surakku.plugins.sort((a, b) => {
-            const x = a.required_for_startup
-            const y = b.required_for_startup
-            return (x === y) ? 0 : x ? -1 : 1
-          }).reverse() as Plugin[][]) {
+          for (const cat of window.Surakku.plugins
+            .sort((a, b) => {
+              const x = a.required_for_startup;
+              const y = b.required_for_startup;
+              return x === y ? 0 : x ? -1 : 1;
+            })
+            .reverse() as Plugin[][]) {
             for (const plugin of cat) {
               const pluginDiv = document.createElement("div");
               pluginDiv.style.margin = "5px";
