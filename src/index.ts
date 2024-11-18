@@ -46,7 +46,8 @@ window.addEventListener("load", async () => {
     plugins,
   };
   for (const pluginCat of plugins) {
-    for (const plugin of pluginCat) {
+    for (const plugin of pluginCat.filter(plugin => localStorage.getItem("plugins__" + plugin.name + "_enabled") == "true" || plugin.required_for_startup)) {
+      console.log(`Loading Plugin: ${plugin.name} ${localStorage.getItem("plugins__" + plugin.name + "_enabled") ? "(Enabled)" : "(Disabled)"}`);
       plugin.execute();
     }
   }
