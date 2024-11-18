@@ -10,5 +10,5 @@ export function getVersion() {
   return VERSION;
 }
 export function getLocalData() {
-  return JSON.parse(localStorage.localConfig_v2)
+  return JSON.parse(localStorage.localConfig_v2);
 }
