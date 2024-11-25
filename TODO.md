@@ -1,6 +1,6 @@
 - [ ] Create injection somehow
 - [ ] Look at [Vencord](https://github.com/Vendicated/Vencord), Better Discord, Redux injection,[Shelter](https://github.com/uwu/shelter/) Other discord mods
-- [ ] Make it build
+- [x] Make it build
 - [ ] Get it approved by chrome & firefox
 - [ ] get domain in browser buddy challange (i think thats the name of it)
 - [ ] Get some more plugins added
@@ -10,3 +10,4 @@
 - [ ] for user deccorations
 - [ ] get the at https://decor.fieryflames.dev/api/decorations/presets
 - [ ] get png version at https://ugc.decor.fieryflames.dev/{hash}.png eg: https://ugc.decor.fieryflames.dev/fa27a98f9e79f31e12b972753feab7e4.png
+- [ ] review db connection? (or make your own)
