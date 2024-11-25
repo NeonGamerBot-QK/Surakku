@@ -16,6 +16,7 @@
     "esbuild": "^0.24.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
+    "esbuild-header": "^1.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {

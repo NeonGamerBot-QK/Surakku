@@ -7,12 +7,19 @@
     "*://*.app.slack.com/*",
     "https://raw.githubusercontent.com/*"
   ],
-  "permissions": ["cookies", "declarativeNetRequest"],
+  "permissions": [
+    "cookies",
+    "declarativeNetRequest"
+  ],
   "version": "0.0.1",
   "content_scripts": [
     {
-      "matches": ["*://*.app.slack.com/*"],
-      "js": ["app/index.js"],
+      "matches": [
+        "*://*.app.slack.com/*"
+      ],
+      "js": [
+        "index.js"
+      ],
       "all_frames": true,
       "world": "MAIN"
     }

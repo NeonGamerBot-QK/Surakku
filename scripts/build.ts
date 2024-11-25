@@ -3,17 +3,20 @@
 import fs from "fs";
 import esbuild, { Format } from "esbuild";
 import { exec, execSync } from "child_process";
+// @ts-ignore
 import path from "path";
 // first build ../src
-const buildDir = path.join(__dirname, "..", "build");
+const buildDirs = [path.join(__dirname, "..", "build/app"), path.join(__dirname, "..", "build/userscript")];
 // const tscBuildOut = execSync("yarn tsc:build").toString()
 // console.log(tscBuildOut)
 // create ../build
-if (!fs.existsSync(buildDir)) {
-  fs.mkdirSync(buildDir);
-} else {
-  fs.rmSync(buildDir, { recursive: true });
-  fs.mkdirSync(buildDir);
+for (const buildDir of buildDirs) {
+  if (!fs.existsSync(buildDir)) {
+    fs.mkdirSync(buildDir);
+  } else {
+    fs.rmSync(buildDir, { recursive: true });
+    fs.mkdirSync(buildDir);
+  }
 }
 const commonOpts: esbuild.BuildOptions = {
   globalName: "Surakku",
@@ -30,7 +33,9 @@ const commonOpts: esbuild.BuildOptions = {
   target: ["esnext"],
   minify: true,
   bundle: true,
+  // plugins: [esbHeaders()]
 };
+
 Promise.all([
   esbuild.build({
     ...commonOpts,
@@ -38,11 +43,17 @@ Promise.all([
     entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
     // platform: "browser",
   }),
+  esbuild.build({
+    ...commonOpts,
+    entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
+    outfile: "build/userscript/surakku.user.js",
+    // platform: "browser",
+  }),
 ]).then((d) => {
   console.log(d);
   // return;
   // copy public folder contents to ../build
-  exec("cp -r ./public/* ./build", (err, stdout, stderr) => {
+  exec("cp -r ./public/* ./build/app", (err, stdout, stderr) => {
     if (err) {
       console.error(err);
       return;
@@ -50,4 +61,5 @@ Promise.all([
     console.log(stdout);
     console.error(stderr);
   });
+
 });
