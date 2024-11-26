@@ -1,5 +1,7 @@
 import { devs } from "../util/devs";
 import { patchMessageBar } from "../api/ChatInput";
+import { Plugin } from "../util";
+
 /**
  * all misc plugins
  *
@@ -293,4 +295,12 @@ export default [
       }, 50);
     },
   },
-];
+  {
+    name: "Disable Notifications",
+    description: "Disables notifications popup by default",
+    author: [devs.neon],
+    async execute() {
+      document.cookie = "no_growl_banner=1;"
+    }
+  }
+] satisfies Plugin[];
