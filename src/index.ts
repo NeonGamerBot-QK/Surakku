@@ -1,3 +1,4 @@
+import "./util/disable-meta"
 import internal from "./plugins/internal";
 import misc from "./plugins/misc";
 import hackclub from "./plugins/hackclub";
