@@ -2,7 +2,7 @@ import { devs } from "../util/devs";
 import { CreateUserBadge } from "../util/UserBadge";
 import mydevbadge from "../assets/dev.svg";
 import icon from "../assets/icon_tiny.png";
-import banner from "../assets/banner.png"
+import banner from "../assets/banner.png";
 import { patchInSettingsElement, SettingsTab } from "../api/Settings";
 import { Plugin } from "../util";
 import { useStoreFunc } from "../api/DataStore";
@@ -67,7 +67,6 @@ export default [
             })
             .reverse() as Plugin[][]) {
             for (const plugin of cat) {
-
               const pluginDiv = document.createElement("div");
               pluginDiv.style.margin = "5px";
               pluginDiv.style.padding = "5px";
@@ -76,7 +75,7 @@ export default [
               pluginDiv.style.background = "0 0";
               pluginDiv.className =
                 "c-button-unstyled p-prefs_modal__channel_overrides_row__details";
-              
+
               const pluginName = document.createElement("h3");
               const pluginDesc = document.createElement("p");
               pluginName.style.fontWeight = "bold";
@@ -113,7 +112,8 @@ export default [
         },
       } satisfies SettingsTab);
     },
-  }, {
+  },
+  {
     name: "Custom CSS",
     description: "Use custom CSS (maybe)",
     author: [devs.neon],
@@ -126,20 +126,22 @@ export default [
       `; // TODO: config system
       document.head.appendChild(css);
     },
-  }, {
+  },
+  {
     name: "Use slack app",
-    description: "you want all app oauth slack features? paste your token from this app!",
+    description:
+      "you want all app oauth slack features? paste your token from this app!",
     author: [devs.neon],
     async execute() {
       // this... actually does not have to do much
       // just attach some properties to window
-      // get store 
-      const store =  useStoreFunc("slack-data");
+      // get store
+      const store = useStoreFunc("slack-data");
       this.custom_properties = {
         token: store.get("token") || null,
         is_authed: Boolean(store.get("token")),
-      }
+      };
     },
-    custom_properties: {}
-  }
+    custom_properties: {},
+  },
 ] satisfies Plugin[];
