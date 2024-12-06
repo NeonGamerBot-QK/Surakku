@@ -1,10 +1,11 @@
 import { devs } from "../util/devs";
 import { CreateUserBadge } from "../util/UserBadge";
 import mydevbadge from "../assets/dev.svg";
-import zeonAvatar from "../assets/zeon.png";
-
+import icon from "../assets/icon_tiny.png";
+import banner from "../assets/banner.png"
 import { patchInSettingsElement, SettingsTab } from "../api/Settings";
 import { Plugin } from "../util";
+import { useStoreFunc } from "../api/DataStore";
 
 /**
  * All plugins exported here are internal plugins.
@@ -35,12 +36,16 @@ export default [
       patchInSettingsElement({
         name: "Surakku",
         id: "surakku",
-        icon: zeonAvatar,
+        icon: icon,
         onOpen() {
           const div = document.createElement("div");
           div.style.padding = "10px";
+          const bannerImg = document.createElement("img");
+          bannerImg.src = banner;
+          bannerImg.style.width = "90%";
           const h1 = document.createElement("h1");
           h1.innerText = "Surakku Settings";
+          div.appendChild(bannerImg);
           div.appendChild(h1);
           const version = document.createElement("span");
           version.innerText = `Version: ${VERSION || import.meta.env.VERSION}`;
@@ -62,6 +67,7 @@ export default [
             })
             .reverse() as Plugin[][]) {
             for (const plugin of cat) {
+
               const pluginDiv = document.createElement("div");
               pluginDiv.style.margin = "5px";
               pluginDiv.style.padding = "5px";
@@ -70,7 +76,7 @@ export default [
               pluginDiv.style.background = "0 0";
               pluginDiv.className =
                 "c-button-unstyled p-prefs_modal__channel_overrides_row__details";
-
+              
               const pluginName = document.createElement("h3");
               const pluginDesc = document.createElement("p");
               pluginName.style.fontWeight = "bold";
@@ -107,5 +113,33 @@ export default [
         },
       } satisfies SettingsTab);
     },
-  },
+  }, {
+    name: "Custom CSS",
+    description: "Use custom CSS (maybe)",
+    author: [devs.neon],
+    execute() {
+      const css = document.createElement("style");
+      css.innerText = `
+       .c-wysiwyg_container__footer, .p-bookmarks_bar, .p-view_header, .p-message_input__input_container_unstyled, .p-message_pane_input, .c-message_kit__gutter, .c-virtual_list__scroll_container {
+       background: transparent !important;
+       }
+      `; // TODO: config system
+      document.head.appendChild(css);
+    },
+  }, {
+    name: "Use slack app",
+    description: "you want all app oauth slack features? paste your token from this app!",
+    author: [devs.neon],
+    async execute() {
+      // this... actually does not have to do much
+      // just attach some properties to window
+      // get store 
+      const store =  useStoreFunc("slack-data");
+      this.custom_properties = {
+        token: store.get("token") || null,
+        is_authed: Boolean(store.get("token")),
+      }
+    },
+    custom_properties: {}
+  }
 ] satisfies Plugin[];

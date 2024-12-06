@@ -23,6 +23,7 @@ const commonOpts: esbuild.BuildOptions = {
   define: {
     NODE_ENV: "production",
     VERSION: JSON.stringify(require("../package.json").version),
+    NAME: JSON.stringify(require("../package.json").name),
     BUILD_TIMESTAMP: JSON.stringify(new Date().toISOString()),
   },
   loader: {
