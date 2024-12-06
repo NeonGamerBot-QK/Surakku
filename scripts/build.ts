@@ -6,7 +6,10 @@ import { exec, execSync } from "child_process";
 // @ts-ignore
 import path from "path";
 // first build ../src
-const buildDirs = [path.join(__dirname, "..", "build/app"), path.join(__dirname, "..", "build/userscript")];
+const buildDirs = [
+  path.join(__dirname, "..", "build/app"),
+  path.join(__dirname, "..", "build/userscript"),
+];
 // const tscBuildOut = execSync("yarn tsc:build").toString()
 // console.log(tscBuildOut)
 // create ../build
@@ -62,5 +65,4 @@ Promise.all([
     console.log(stdout);
     console.error(stderr);
   });
-
 });
