@@ -4,7 +4,7 @@ export interface Plugin {
   name: string;
   description: string;
   author: Dev[];
-  custom_properties: {
+  custom_properties?: {
     [key: string]: any;
   };
   execute: () => void | Promise<void>;
