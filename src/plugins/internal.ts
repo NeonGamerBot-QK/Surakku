@@ -104,17 +104,16 @@ export default [
                 const optionsButton = document.createElement("button");
                 optionsButton.innerText = "Options";
                 let optionsOpened = false;
-                let modalDiv:any = null
-                optionsButton.addEventListener("click",async () => {
+                let modalDiv: any = null;
+                optionsButton.addEventListener("click", async () => {
                   if (optionsOpened && modalDiv) {
                     modalDiv?.remove();
                     optionsOpened = false;
                     return;
-                  } else if (!optionsOpened && modalDiv) { 
-                   plugins.appendChild(modalDiv);
+                  } else if (!optionsOpened && modalDiv) {
+                    plugins.appendChild(modalDiv);
                     optionsOpened = true;
-                  }
-                  else {
+                  } else {
                     modalDiv = document.createElement("div");
                     modalDiv.style.position = "fixed";
                     modalDiv.style.top = "0";
@@ -125,7 +124,8 @@ export default [
                     modalDiv.style.alignItems = "center";
                     modalDiv.style.justifyContent = "center";
                     modalDiv.style.zIndex = "9999";
-                    modalDiv.style.background = "rgba(var(--sk_primary_background,255,255,255),1)"
+                    modalDiv.style.background =
+                      "rgba(var(--sk_primary_background,255,255,255),1)";
                     // on click oob close modal
                     modalDiv.addEventListener("click", (e) => {
                       if (e.target === modalDiv) {
@@ -133,11 +133,11 @@ export default [
                         optionsOpened = false;
                       }
                     });
-                    plugins.appendChild((await plugin.setupOptions!()));
+                    plugins.appendChild(await plugin.setupOptions!());
                     document.body.appendChild(modalDiv);
-                    optionsOpened = true
+                    optionsOpened = true;
                   }
-                 })
+                });
                 pluginDiv.appendChild(optionsButton);
               }
               pluginDiv.appendChild(pluginName);
@@ -183,7 +183,7 @@ export default [
       };
     },
     setupOptions() {
-      const div = document.createElement("div")
+      const div = document.createElement("div");
       const btnForTest = document.createElement("button");
       btnForTest.innerText = "Test";
       btnForTest.addEventListener("click", () => {
