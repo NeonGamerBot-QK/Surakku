@@ -7,7 +7,7 @@ import zeon from "../assets/zeon.png";
 import icon_tiny from "../assets/icon_tiny.png";
 import { devs } from "../util/devs";
 // all of zeon's channels currently
-const zeon_channels = ["C07LEEB50KD", "C07RW1666UV"]
+const zeon_channels = ["C07LEEB50KD", "C07RW1666UV"];
 export default [
   {
     name: "Custom Channel Icons",
@@ -20,7 +20,7 @@ export default [
           id: channel,
           icon: zeon,
         });
-       })
+      });
 
       ModifySidebarChannelIcon({
         id: "C07UEGSTQJJ",
@@ -28,8 +28,8 @@ export default [
       });
       ModifySidebarChannelIcon({
         id: `C07TKPC0ZNZ`,
-        icon: icon_tiny
-      })
+        icon: icon_tiny,
+      });
       // TODO: add your own:3
     },
   },
