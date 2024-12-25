@@ -302,5 +302,65 @@ export default [
     async execute() {
       document.cookie = "no_growl_banner=1;"
     }
+  },
+{
+name: "SlackCuddles",
+description: "Why to a huddle when u can do a slack cuddle",
+author: [devs.thetridentguy],
+execute() {
+  console.log("Cuddle script injected sucessfully!");
+  console.log(`Slack Cuddles Copyright (C) 2024 TheTridentGuy (http://thetridentguy.xyz)
+  This program comes with ABSOLUTELY NO WARRANTY;
+  This is free software, and you are welcome to redistribute it
+  under certain conditions;`);
+  var replacements = {
+      "Huddle": "Cuddle",
+      "huddle": "cuddle"
+  };
+
+  var ignore_classes = ["p-message_pane_input"];
+
+  function has_ancestor_class(node:any, class_name:string) {
+      while (node) {
+          if (node.classList && node.classList.contains(class_name)) {
+              return true;
+          }
+          node = node.parentElement;
+      }
+      return false;
   }
+
+  function replace_text(node:any) {
+      for(var class_name of ignore_classes) {
+          if (has_ancestor_class(node, class_name)) {
+              return;
+          }
+      }
+      if (node.nodeType == Node.TEXT_NODE) {
+          var text = node.textContent;
+          for (var [target_word, replacement_word] of Object.entries(replacements)) {
+              text = text.replace(target_word, replacement_word);
+          }
+          node.textContent = text;
+      } else {
+          node.childNodes.forEach(replace_text);
+      }
+  }
+  
+  var title = document.title;
+  for (var [target_word, replacement_word] of Object.entries(replacements)) {
+      title = title.replace(target_word, replacement_word);
+  }
+
+  var observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+              replace_text(node);
+          });
+      });
+  });
+  observer.observe(document.body, {childList: true, subtree: true});
+},
+}  
 ] satisfies Plugin[];
+

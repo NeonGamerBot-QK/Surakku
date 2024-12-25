@@ -10,4 +10,5 @@
 - [ ] for user deccorations
 - [ ] get the at https://decor.fieryflames.dev/api/decorations/presets
 - [ ] get png version at https://ugc.decor.fieryflames.dev/{hash}.png eg: https://ugc.decor.fieryflames.dev/fa27a98f9e79f31e12b972753feab7e4.png
-- [ ] review db connection? (or make your own)
+- [ ] review db connection? (or make your own) ( soon)
+- [ ] convert the intervals to mutationobserver

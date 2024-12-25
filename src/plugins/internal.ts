@@ -194,4 +194,59 @@ export default [
     },
     custom_properties: {},
   },
+  {
+    name: "Bypass CSP (extension)", 
+    description: "Bypass CSP (extension)",
+    author: [devs.neon],
+   async execute() {
+      let instance = null;
+try {
+instance = browser;
+} catch(e) {
+}
+try {
+  instance = chrome;
+} catch(e){}
+      if(instance) {
+        console.log(instance.runtime, `runtime`, chrome.runtime)
+  //  window.onmessage = (e) => {
+  //   console.log(e)
+  //   debugger;
+  //  }
+//@ts-ignore 
+window.send_fetch = (url:string,options?:any) => {
+  console.log(`ipinfo`)
+  return new Promise((res,rej) => {
+    window.onmessage = (e) => {
+      if(e.data.type && e.data.type == "fetch-result") {
+      // console.log(e.data, `runtime return`)
+      res(e.data.text)
+      }
+    }
+    window.postMessage({
+      type: "fetch",
+      url,
+      options
+    }, "*")
+  })
+}
+
+//@ts-ignore
+this.custom_properties.fetch = window.send_fetch
+
+
+//       //@ts-ignore
+// window.send_fetch = (url:string,options:any) => {
+//   console.log(instance)
+//   //@ts-ignore
+//  return instance.runtime.sendMessage({
+//     action: "fetchData",
+//     url, 
+//     options,
+//   })
+// }
+     }
+    },
+    custom_properties: {}
+  }
 ] satisfies Plugin[];

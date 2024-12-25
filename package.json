@@ -11,12 +11,14 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/firefox-webext-browser": "^120.0.4",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.8.1",
     "esbuild": "^0.24.0",
+    "esbuild-header": "^1.0.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
-    "esbuild-header": "^1.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {

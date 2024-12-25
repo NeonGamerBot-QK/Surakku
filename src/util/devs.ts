@@ -21,5 +21,9 @@ export const devs: {
     link: "https://saahild.com",
     avatar: Avatars.NeonsAvatar,
   },
+  thetridentguy: {
+    name: "TheTridentGuy",
+    link: "http://thetridentguy.xyz/"
+  }
 };
 export default devs as { [dev: string]: Dev };

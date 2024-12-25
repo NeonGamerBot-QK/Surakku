@@ -4,11 +4,11 @@
   "description": "Slack Client Mod",
   "author": "Neon <neon@saahild.com>",
   "host_permissions": [
-    "*://*.app.slack.com/*",
-    "https://raw.githubusercontent.com/*"
+    "*://*.app.slack.com/*"
   ],
   "permissions": [
     "cookies",
+        "activeTab",
     "declarativeNetRequest"
   ],
   "version": "0.0.1",
@@ -22,8 +22,19 @@
       ],
       "all_frames": true,
       "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.app.slack.com/*"
+      ],
+      "js": [
+        "let_me_use_runtime.js"
+      ]
     }
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "declarative_net_request": {
     "rule_resources": [
       {

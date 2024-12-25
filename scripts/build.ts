@@ -44,17 +44,31 @@ Promise.all([
   esbuild.build({
     ...commonOpts,
     outdir: "build/app",
-    entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
+    entryPoints: [path.join(__dirname, "..", "src", "index.ts"), path.join(__dirname, "..", "src", "let_me_use_runtime.ts")],
     // platform: "browser",
   }),
+  // build background :P
   esbuild.build({
     ...commonOpts,
-    entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
-    outfile: "build/userscript/surakku.user.js",
+    entryPoints: [path.join(__dirname, "..", "src", "background.ts")],
+    outdir: "build/app",
     // platform: "browser",
   }),
+  // // let_me_use_runtime
+  // esbuild.build({
+  //   ...commonOpts,
+  //   entryPoints: [],
+  //   outdir: "build/app",
+  //   // platform: "browser",
+  // }),
+  // esbuild.build({
+  //   ...commonOpts,
+  //   entryPoints: [path.join(__dirname, "..", "src", "index.ts")],
+  //   outfile: "build/userscript/surakku.user.js",
+  //   // platform: "browser",
+  // }),
 ]).then((d) => {
-  console.log(d);
+  // console.log(d);
   // return;
   // copy public folder contents to ../build
   exec("cp -r ./public/* ./build/app", (err, stdout, stderr) => {

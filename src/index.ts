@@ -17,6 +17,7 @@ import {
 } from "./api/Settings";
 // bind console.log to
 const log0 = console.log;
+
 //@ts-ignore
 console.log = (...arguments) => {
   log0(`[SURAKKU/${utils.getTime()}]`, ...arguments);
