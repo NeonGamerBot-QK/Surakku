@@ -23,7 +23,7 @@ export const devs: {
   },
   thetridentguy: {
     name: "TheTridentGuy",
-    link: "http://thetridentguy.xyz/"
-  }
+    link: "http://thetridentguy.xyz/",
+  },
 };
 export default devs as { [dev: string]: Dev };
