@@ -3,33 +3,19 @@
   "name": "Surakku",
   "description": "Slack Client Mod",
   "author": "Neon <neon@saahild.com>",
-  "host_permissions": [
-    "*://*.app.slack.com/*"
-  ],
-  "permissions": [
-    "cookies",
-        "activeTab",
-    "declarativeNetRequest"
-  ],
+  "host_permissions": ["*://*.app.slack.com/*"],
+  "permissions": ["cookies", "activeTab", "declarativeNetRequest"],
   "version": "0.0.1",
   "content_scripts": [
     {
-      "matches": [
-        "*://*.app.slack.com/*"
-      ],
-      "js": [
-        "index.js"
-      ],
+      "matches": ["*://*.app.slack.com/*"],
+      "js": ["index.js"],
       "all_frames": true,
       "world": "MAIN"
     },
     {
-      "matches": [
-        "*://*.app.slack.com/*"
-      ],
-      "js": [
-        "let_me_use_runtime.js"
-      ]
+      "matches": ["*://*.app.slack.com/*"],
+      "js": ["let_me_use_runtime.js"]
     }
   ],
   "background": {
