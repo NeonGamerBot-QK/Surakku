@@ -14,12 +14,12 @@ export async function listenForAllInters() {
   let i = 0;
   const mutationObserver = new MutationObserver(async (mutations) => {
     // await new Promise(r => setTimeout(r, 100))
-    console.debug(`#mutation`)
-    inters[i]()
+    console.debug(`#mutation`);
+    inters[i]();
     i++;
-    if(i >= inters.length) {
+    if (i >= inters.length) {
       i = 0;
     }
-  })
+  });
   mutationObserver.observe(document.body, { childList: true, subtree: true });
 }
