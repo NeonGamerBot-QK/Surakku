@@ -79,7 +79,7 @@ window.addEventListener("load", async () => {
   addWatcher(watchUsersForBadges);
   addWatcher(watchSideBarChannels);
   addWatcher(watchForSettings);
-  console.log(0)
+  console.log(0);
   listenForAllInters();
-  console.log(1)
+  console.log(1);
 });
