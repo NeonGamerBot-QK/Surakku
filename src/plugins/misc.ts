@@ -308,15 +308,18 @@ export default [
     description: "removes sales force from settings",
     author: [devs.neon],
     async execute() {
-const mutationObserver = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if(document.getElementById("salesforce")) {
-      document.getElementById("salesforce")!.remove();
-    }
-  });
-});
-mutationObserver.observe(document.body, { childList: true, subtree: true }); 
-}
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (document.getElementById("salesforce")) {
+            document.getElementById("salesforce")!.remove();
+          }
+        });
+      });
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    },
   },
   {
     name: "SlackCuddles",
