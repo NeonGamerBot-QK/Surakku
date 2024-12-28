@@ -3,6 +3,7 @@ import { CreateUserBadge } from "../util/UserBadge";
 import mydevbadge from "../assets/dev.svg";
 import icon from "../assets/icon_tiny.png";
 import banner from "../assets/banner.png";
+import { createPopup } from "../util/popup";
 import { patchInSettingsElement, SettingsTab } from "../api/Settings";
 import { Plugin } from "../util";
 import { useStoreFunc } from "../api/DataStore";
@@ -102,41 +103,10 @@ export default [
               }
               if (plugin.setupOptions) {
                 const optionsButton = document.createElement("button");
-                optionsButton.innerText = "Options";
-                let optionsOpened = false;
-                let modalDiv: any = null;
+                optionsButton.innerHTML = `<svg data-y0c="true" data-qa="settings" aria-hidden="true" viewBox="0 0 20 20" class=""><path fill="currentColor" fill-rule="evenodd" d="m9.151 3.676.271-1.108a2.5 2.5 0 0 1 1.156 0l.271 1.108a2 2 0 0 0 3.022 1.252l.976-.592a2.5 2.5 0 0 1 .817.817l-.592.975a2 2 0 0 0 1.252 3.023l1.108.27c.09.38.09.777 0 1.157l-1.108.27a2 2 0 0 0-1.252 3.023l.592.975a2.5 2.5 0 0 1-.817.818l-.976-.592a2 2 0 0 0-3.022 1.251l-.271 1.109a2.5 2.5 0 0 1-1.156 0l-.27-1.108a2 2 0 0 0-3.023-1.252l-.975.592a2.5 2.5 0 0 1-.818-.818l.592-.975a2 2 0 0 0-1.252-3.022l-1.108-.271a2.5 2.5 0 0 1 0-1.156l1.108-.271a2 2 0 0 0 1.252-3.023l-.592-.975a2.5 2.5 0 0 1 .818-.817l.975.592A2 2 0 0 0 9.15 3.676m2.335-2.39a4 4 0 0 0-2.972 0 .75.75 0 0 0-.45.518l-.372 1.523-.004.018a.5.5 0 0 1-.758.314l-.016-.01-1.34-.813a.75.75 0 0 0-.685-.048 4 4 0 0 0-2.1 2.1.75.75 0 0 0 .047.685l.814 1.34.01.016a.5.5 0 0 1-.314.759l-.018.004-1.523.372a.75.75 0 0 0-.519.45 4 4 0 0 0 0 2.971.75.75 0 0 0 .519.45l1.523.373.018.004a.5.5 0 0 1 .314.758l-.01.016-.814 1.34a.75.75 0 0 0-.048.685 4 4 0 0 0 2.101 2.1.75.75 0 0 0 .685-.048l1.34-.813.016-.01a.5.5 0 0 1 .758.314l.004.018.372 1.523a.75.75 0 0 0 .45.518 4 4 0 0 0 2.972 0 .75.75 0 0 0 .45-.518l.372-1.523.004-.018a.5.5 0 0 1 .758-.314l.016.01 1.34.813a.75.75 0 0 0 .685.049 4 4 0 0 0 2.101-2.101.75.75 0 0 0-.048-.685l-.814-1.34-.01-.016a.5.5 0 0 1 .314-.758l.018-.004 1.523-.373a.75.75 0 0 0 .519-.45 4 4 0 0 0 0-2.97.75.75 0 0 0-.519-.45l-1.523-.373-.018-.004a.5.5 0 0 1-.314-.759l.01-.015.814-1.34a.75.75 0 0 0 .048-.685 4 4 0 0 0-2.101-2.101.75.75 0 0 0-.685.048l-1.34.814-.016.01a.5.5 0 0 1-.758-.315l-.004-.017-.372-1.524a.75.75 0 0 0-.45-.518M8 10a2 2 0 1 1 4 0 2 2 0 0 1-4 0m2-3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7" clip-rule="evenodd"></path></svg>`;
+                optionsButton.style.color = `var(--dt_color-content-pry)`
                 optionsButton.addEventListener("click", async () => {
-                  if (optionsOpened && modalDiv) {
-                    modalDiv?.remove();
-                    optionsOpened = false;
-                    return;
-                  } else if (!optionsOpened && modalDiv) {
-                    plugins.appendChild(modalDiv);
-                    optionsOpened = true;
-                  } else {
-                    modalDiv = document.createElement("div");
-                    modalDiv.style.position = "fixed";
-                    modalDiv.style.top = "0";
-                    modalDiv.style.left = "0";
-                    modalDiv.style.right = "0";
-                    modalDiv.style.bottom = "0";
-                    modalDiv.style.display = "flex";
-                    modalDiv.style.alignItems = "center";
-                    modalDiv.style.justifyContent = "center";
-                    modalDiv.style.zIndex = "9999";
-                    modalDiv.style.background =
-                      "rgba(var(--sk_primary_background,255,255,255),1)";
-                    // on click oob close modal
-                    modalDiv.addEventListener("click", (e) => {
-                      if (e.target === modalDiv) {
-                        modalDiv.remove();
-                        optionsOpened = false;
-                      }
-                    });
-                    plugins.appendChild(await plugin.setupOptions!());
-                    document.body.appendChild(modalDiv);
-                    optionsOpened = true;
-                  }
+                  createPopup(await plugin.setupOptions!())
                 });
                 pluginDiv.appendChild(optionsButton);
               }
@@ -159,11 +129,7 @@ export default [
     author: [devs.neon],
     execute() {
       const css = document.createElement("style");
-      css.innerText = `
-       .c-wysiwyg_container__footer, .p-bookmarks_bar, .p-view_header, .p-message_input__input_container_unstyled, .p-message_pane_input, .c-message_kit__gutter, .c-virtual_list__scroll_container {
-       background: transparent !important;
-       }
-      `; // TODO: config system
+      css.innerText = `    `; // TODO: config system
       document.head.appendChild(css);
     },
   },
@@ -183,12 +149,19 @@ export default [
       };
     },
     setupOptions() {
+      alert(this.custom_properties!.token || "No token??")
       const div = document.createElement("div");
       const btnForTest = document.createElement("button");
-      btnForTest.innerText = "Test";
+      const optionForToken =  document.createElement("input");
+      optionForToken.type = "text";
+      optionForToken.value = this.custom_properties!.token;
+
+      btnForTest.innerText = "Update/Set token";
       btnForTest.addEventListener("click", () => {
         console.log("Test");
+        this.custom_properties!.token = optionForToken.value;
       });
+      div.appendChild(optionForToken);
       div.appendChild(btnForTest);
       return div;
     },
@@ -214,7 +187,7 @@ export default [
         //  }
         //@ts-ignore
         window.send_fetch = (url: string, options?: any) => {
-          console.log(`ipinfo`);
+          // console.log(`ipinfo`);
           return new Promise((res, rej) => {
             window.onmessage = (e) => {
               if (e.data.type && e.data.type == "fetch-result") {
@@ -249,5 +222,6 @@ export default [
       }
     },
     custom_properties: {},
-  },
+  }
 ] satisfies Plugin[];
+
