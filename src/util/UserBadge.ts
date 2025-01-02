@@ -12,7 +12,7 @@ export function watchUsersForBadges() {
       d.avatar =
         e.parentElement?.parentElement?.parentElement?.parentElement?.children[0]?.querySelector(
           "img",
-        ).src;
+        )!.src;
     } catch (e) {}
     return d;
   });
@@ -25,8 +25,6 @@ export function watchUsersForBadges() {
       }
     }
   }
-  // }, 50);
-  // return inter;
 }
 export const badges: any = [];
 export function CreateUserBadge(

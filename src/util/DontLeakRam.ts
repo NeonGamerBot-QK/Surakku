@@ -3,13 +3,6 @@ export function addWatcher(inter: any) {
   inters.push(inter);
 }
 export async function listenForAllInters() {
-  // for (const inter of inters) {
-  //   try {
-  //     await inter();
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }
   // most of these are on changes in DOM anyways..
   let i = 0;
   const mutationObserver = new MutationObserver(async (mutations) => {

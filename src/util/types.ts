@@ -1,5 +1,4 @@
 import { Dev } from "./devs";
-
 export interface Plugin {
   name: string;
   description: string;

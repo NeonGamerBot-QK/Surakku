@@ -39,7 +39,6 @@ export function createPopup(el: HTMLElement) {
   close.style.position = "absolute";
   close.style.top = "1em";
   close.style.right = "1em";
-  //    close.style.backgroundColor = "var(--dt_color-base-modal)";
   close.style.border = "none";
   close.style.borderRadius = "50%";
   close.style.width = "2em";
@@ -62,6 +61,5 @@ export function createPopup(el: HTMLElement) {
       d.style.backgroundColor = "var(--dt_color-base-modal) !important";
     }
   });
-
   form.append(el);
 }
