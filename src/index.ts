@@ -8,9 +8,7 @@ import { getPatchInternals } from "./util/patches";
 import { watchUsersForBadges } from "./util/UserBadge";
 import { watchSideBarChannels } from "./api/ChannelPatch";
 import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
-import {
-  watchForSettings,
-} from "./api/Settings";
+import { watchForSettings } from "./api/Settings";
 // bind console.log to
 const log0 = console.log;
 
