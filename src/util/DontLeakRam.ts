@@ -14,5 +14,10 @@ export async function listenForAllInters() {
       i = 0;
     }
   });
-  mutationObserver.observe(document.body, { childList: true, subtree: true, attributes: true, characterData: true });
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true,
+  });
 }
