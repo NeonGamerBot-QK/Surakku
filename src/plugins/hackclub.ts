@@ -40,13 +40,15 @@ export default [
     author: [devs.neon],
     async execute() {
       addWatcher(() => {
-        const el = document.querySelector(`[data-qa-channel-sidebar-channel-id="C0188CY57PZ"]`)
+        const el = document.querySelector(
+          `[data-qa-channel-sidebar-channel-id="C0188CY57PZ"]`,
+        );
         //@ts-ignore
-        if(el) el.style.display = 'none'
-        if(window.location.href.includes("C0188CY57PZ")) {
-          window.history.back()
+        if (el) el.style.display = "none";
+        if (window.location.href.includes("C0188CY57PZ")) {
+          window.history.back();
         }
-      })
-    }
-  }
+      });
+    },
+  },
 ];
