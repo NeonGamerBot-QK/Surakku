@@ -324,14 +324,17 @@ export default [
   },
   {
     name: "Remove message blur",
-    description: "Removes the blur effect on messages because u need premium or smthing",
+    description:
+      "Removes the blur effect on messages because u need premium or smthing",
     author: [devs.neon],
-   async execute() {
+    async execute() {
       addWatcher(() => {
-        Array.from(document.querySelectorAll(".c-message_kit__hidden_message_blur")).forEach(e=>{
-          e.classList.toggle("c-message_kit__hidden_message_blur", false)
-        })
-      })
+        Array.from(
+          document.querySelectorAll(".c-message_kit__hidden_message_blur"),
+        ).forEach((e) => {
+          e.classList.toggle("c-message_kit__hidden_message_blur", false);
+        });
+      });
     },
   },
   {
@@ -340,17 +343,20 @@ export default [
     author: [devs.neon],
     async execute() {
       // please feel to add to this, you can add by adding a PR with the selector and proof and how to repoduce it
-      const selectors = [ `[id="limitedHistoryBanner"]`,
-         `[data-qa="upgrades-kit-upgrade-button"]`, `[data-qa="upgrade-menu-item-wrapper"]`]
+      const selectors = [
+        `[id="limitedHistoryBanner"]`,
+        `[data-qa="upgrades-kit-upgrade-button"]`,
+        `[data-qa="upgrade-menu-item-wrapper"]`,
+      ];
       addWatcher(() => {
-        for(const selector of selectors){
-          for(const el of document.querySelectorAll(selector)){
+        for (const selector of selectors) {
+          for (const el of document.querySelectorAll(selector)) {
             //@ts-ignore
-            el.style.display = 'none'
+            el.style.display = "none";
           }
         }
-      })
-    }
+      });
+    },
   },
   {
     name: "Avatar decorations",
@@ -358,15 +364,17 @@ export default [
     author: [devs.neon],
     async execute() {
       addWatcher(() => {
-        Array.from(document.querySelectorAll(`[class*="c-base_icon"]`)).forEach(e=>{
-          //@ts-ignore
-          delete e.srcset 
-          //@ts-ignore
-          // e.src = `https://ca.slack-edge.com/T053NBD7RDG-U053N7QALHH-g7800332736c-48`
-          // TODO: add avatar decorations
-        })
-      })
-    }
+        Array.from(document.querySelectorAll(`[class*="c-base_icon"]`)).forEach(
+          (e) => {
+            //@ts-ignore
+            delete e.srcset;
+            //@ts-ignore
+            // e.src = `https://ca.slack-edge.com/T053NBD7RDG-U053N7QALHH-g7800332736c-48`
+            // TODO: add avatar decorations
+          },
+        );
+      });
+    },
   },
   {
     name: "SlackCuddles",
