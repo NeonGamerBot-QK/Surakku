@@ -6,6 +6,7 @@ import kittyfaceemoji from "../assets/3c.png";
 import zeon from "../assets/zeon.png";
 import icon_tiny from "../assets/icon_tiny.png";
 import { devs } from "../util/devs";
+import { addWatcher } from "../util/DontLeakRam";
 // all of zeon's channels currently
 const zeon_channels = ["C07LEEB50KD", "C07RW1666UV"];
 export default [
@@ -33,4 +34,19 @@ export default [
       // TODO: add your own:3
     },
   },
+  {
+    name: "Ban #meta",
+    description: "this is mostly a joke but sometimes dont open #meta",
+    author: [devs.neon],
+    async execute() {
+      addWatcher(() => {
+        const el = document.querySelector(`[data-qa-channel-sidebar-channel-id="C0188CY57PZ"]`)
+        //@ts-ignore
+        if(el) el.style.display = 'none'
+        if(window.location.href.includes("C0188CY57PZ")) {
+          window.history.back()
+        }
+      })
+    }
+  }
 ];
