@@ -2,13 +2,14 @@
 - [ ] Look at [Vencord](https://github.com/Vendicated/Vencord), Better Discord, Redux injection,[Shelter](https://github.com/uwu/shelter/) Other discord mods
 - [x] Make it build
 - [ ] Get it approved by chrome & firefox
-- [ ] get domain in browser buddy challange (i think thats the name of it)
-- [ ] Get some more plugins added
+- [ ] ~~get domain in browser buddy challange (i think thats the name of it)~~ a little to late
+- [ ] Get some more plugins added -- 10%
 - [ ] Work on user api (no types for first relase)
 - [ ] Learn about webpack chunks [guide](https://gist.github.com/0xdevalias/8c621c5d09d780b1d321bfdb86d67cdd#react-internals)
 - - [ ] do the same above for **React**, **ReactDOM**, **Redux** and **React Modal**
 - [ ] for user deccorations
-- [ ] get the at https://decor.fieryflames.dev/api/decorations/presets
-- [ ] get png version at https://ugc.decor.fieryflames.dev/{hash}.png eg: https://ugc.decor.fieryflames.dev/fa27a98f9e79f31e12b972753feab7e4.png
+- - [ ] get the at https://decor.fieryflames.dev/api/decorations/presets
+- - [ ] get png version at https://ugc.decor.fieryflames.dev/{hash}.png eg: https://ugc.decor.fieryflames.dev/fa27a98f9e79f31e12b972753feab7e4.png
 - [ ] review db connection? (or make your own) ( soon)
 - [ ] convert the intervals to mutationobserver
+- [x] unhide the messages hidden after 90 days
