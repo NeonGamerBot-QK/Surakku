@@ -438,5 +438,19 @@ export default [
       });
       observer.observe(document.body, { childList: true, subtree: true });
     },
-  },
+  }, {
+    name: "Send Via slack api",
+    description: `If u didnt know you can send blocks as you :0`,
+    author: [devs.neon],
+    async execute(){
+      // dont check for token on load;only for when send
+      addWatcher(() => {
+        if(document.querySelector('[id="send_blocks"]')) return;
+        if(!document.querySelector('[data-qa="menu_items"]')) return;
+        const parent = document.querySelector('[data-qa="menu_items"]')
+        const el = document.createElement("div")
+        
+      })
+    }
+  }
 ] satisfies Plugin[];

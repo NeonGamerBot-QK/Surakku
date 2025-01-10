@@ -7,6 +7,7 @@ import { createPopup } from "../util/popup";
 import { patchInSettingsElement, SettingsTab } from "../api/Settings";
 import { Plugin } from "../util";
 import { useStoreFunc } from "../api/DataStore";
+import { addWatcher } from "../util/DontLeakRam";
 
 /**
  * All plugins exported here are internal plugins.
@@ -157,6 +158,7 @@ export default [
       optionForToken.value = this.custom_properties!.token;
 
       btnForTest.innerText = "Update/Set token";
+      btnForTest.style.margin = "1em";
       btnForTest.addEventListener("click", () => {
         console.log("Test");
         this.custom_properties!.token = optionForToken.value;
@@ -222,5 +224,6 @@ export default [
       }
     },
     custom_properties: {},
-  },
+  }
 ] satisfies Plugin[];
+

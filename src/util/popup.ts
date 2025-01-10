@@ -34,7 +34,7 @@ export function createPopup(el: HTMLElement) {
   };
   // Close button
   const close = document.createElement("button");
-  close.innerHTML = "X";
+  close.innerHTML = "x";
   close.style.color = "red";
   close.style.position = "absolute";
   close.style.top = "1em";

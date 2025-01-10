@@ -39,6 +39,6 @@ module.exports = (router, db) => {
     });
   });
   router.get("/optout/:userID", async (req, res) => {
-    //todo some auth or whatever
+    //todo some auth or whatever  
   });
 };
