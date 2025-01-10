@@ -13,4 +13,3 @@
 - [ ] review db connection? (or make your own) ( soon)
 - [ ] convert the intervals to mutationobserver
 - [x] unhide the messages hidden after 90 days
-
