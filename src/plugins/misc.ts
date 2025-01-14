@@ -439,47 +439,56 @@ export default [
       });
       observer.observe(document.body, { childList: true, subtree: true });
     },
-  }, {
+  },
+  {
     name: "Send Via slack api",
     description: `If u didnt know you can send blocks as you :0`,
     author: [devs.neon],
-    async execute(){
+    async execute() {
       // dont check for token on load;only for when send
       // addWatcher(() => {
 
       //   // debugger;
       // })
-      CreateMessageButton(`<svg data-y0c="true" data-qa="send_blocks" aria-hidden="true" viewBox="0 0 20 20" class="is-inline" style="--s: 20px;"><path fill="currentColor" fill-rule="evenodd" d="M5.128 3.213A.75.75 0 0 0 4 3.861v12.277a.75.75 0 0 0 1.128.647l10.523-6.138a.75.75 0 0 0 0-1.296zM2.5 3.861c0-1.737 1.884-2.819 3.384-1.944l10.523 6.139c1.488.868 1.488 3.019 0 3.887L5.884 18.08c-1.5.875-3.384-.207-3.384-1.943z" clip-rule="evenodd"></path></svg>`,
-        "Send Blocks", async ()=>{
-     //@ts-ignore
-        const utoken = window.Surakku.plugins.flat().find(e=>e.name == "Use slack app").custom_properties.token
-        if(!utoken) return alert("No token found")
-      // use the message as a json payload
-    // yes
-    // im not lying
-    //@ts-ignore
-    const contentRR = document.querySelector('.ql-editor')!.innerText    
-    try {
-      const data = JSON.parse(contentRR)
-alert(`Wow i have ${data.length} blocks`)
-//@ts-ignore
-//FIXME: CORS RAAAAA (current error is it no send to channel, and is stuck on "pending")
-await window.send_fetch("https://api.saahild.com/api/slack/chat.postMessage", {
-  method: "POST",
-  headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${utoken}`
+      CreateMessageButton(
+        `<svg data-y0c="true" data-qa="send_blocks" aria-hidden="true" viewBox="0 0 20 20" class="is-inline" style="--s: 20px;"><path fill="currentColor" fill-rule="evenodd" d="M5.128 3.213A.75.75 0 0 0 4 3.861v12.277a.75.75 0 0 0 1.128.647l10.523-6.138a.75.75 0 0 0 0-1.296zM2.5 3.861c0-1.737 1.884-2.819 3.384-1.944l10.523 6.139c1.488.868 1.488 3.019 0 3.887L5.884 18.08c-1.5.875-3.384-.207-3.384-1.943z" clip-rule="evenodd"></path></svg>`,
+        "Send Blocks",
+        async () => {
+          //@ts-ignore
+          const utoken = window.Surakku.plugins
+            .flat()
+            .find((e) => e.name == "Use slack app").custom_properties.token;
+          if (!utoken) return alert("No token found");
+          // use the message as a json payload
+          // yes
+          // im not lying
+          //@ts-ignore
+          const contentRR = document.querySelector(".ql-editor")!.innerText;
+          try {
+            const data = JSON.parse(contentRR);
+            alert(`Wow i have ${data.length} blocks`);
+            //@ts-ignore
+            //FIXME: CORS RAAAAA (current error is it no send to channel, and is stuck on "pending")
+            await window.send_fetch(
+              "https://api.saahild.com/api/slack/chat.postMessage",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${utoken}`,
+                },
+                body: JSON.stringify({
+                  //@ts-ignore so its always truthy? yes it is
+                  channel: "C07LGLUTNH2" || location.pathname.split("/")[3],
+                  text: `test`,
+                }),
+              },
+            );
+          } catch (e: any) {
+            alert(e.message);
+          }
+        },
+      );
+    },
   },
-  body: JSON.stringify({
-    //@ts-ignore so its always truthy? yes it is
-      channel: "C07LGLUTNH2" || location.pathname.split("/")[3],
-      text: `test`
-  })
-});
-    } catch (e: any) {
-      alert(e.message)
-    }
-      })
-    }
-  }  
 ] satisfies Plugin[];
