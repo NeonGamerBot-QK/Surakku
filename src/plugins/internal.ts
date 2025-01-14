@@ -147,7 +147,7 @@ export default [
       this.custom_properties = {
         token: store.get("token") || null,
         is_authed: Boolean(store.get("token")),
-        store
+        store,
       };
     },
     setupOptions() {
@@ -225,6 +225,5 @@ export default [
       }
     },
     custom_properties: {},
-  }
+  },
 ] satisfies Plugin[];
-
