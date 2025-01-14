@@ -9,6 +9,7 @@ import { watchUsersForBadges } from "./util/UserBadge";
 import { watchSideBarChannels } from "./api/ChannelPatch";
 import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
 import { watchForSettings } from "./api/Settings";
+import { watchForMessageModal } from "./util/MessageButton";
 // bind console.log to
 const log0 = console.log;
 
@@ -53,6 +54,7 @@ window.addEventListener("load", async () => {
   addWatcher(watchUsersForBadges);
   addWatcher(watchSideBarChannels);
   addWatcher(watchForSettings);
+  addWatcher(watchForMessageModal);
   console.log(0);
   listenForAllInters();
   console.log(1);

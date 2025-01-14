@@ -147,10 +147,10 @@ export default [
       this.custom_properties = {
         token: store.get("token") || null,
         is_authed: Boolean(store.get("token")),
+        store
       };
     },
     setupOptions() {
-      alert(this.custom_properties!.token || "No token??");
       const div = document.createElement("div");
       const btnForTest = document.createElement("button");
       const optionForToken = document.createElement("input");
@@ -160,8 +160,9 @@ export default [
       btnForTest.innerText = "Update/Set token";
       btnForTest.style.margin = "1em";
       btnForTest.addEventListener("click", () => {
-        console.log("Test");
+        // console.log("Test");
         this.custom_properties!.token = optionForToken.value;
+        this.custom_properties!.store.set("token", optionForToken.value);
       });
       div.appendChild(optionForToken);
       div.appendChild(btnForTest);
