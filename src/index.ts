@@ -59,4 +59,3 @@ window.addEventListener("load", async () => {
   listenForAllInters();
   console.log(1);
 });
-
