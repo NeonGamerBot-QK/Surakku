@@ -65,7 +65,7 @@ export function createPopup(el: HTMLElement) {
 }
 
 export function createAlertPopup(text: string) {
-  const p = document.createElement('p')
-  p.innerHTML = text
-  return createPopup(p)
+  const p = document.createElement("p");
+  p.innerHTML = text;
+  return createPopup(p);
 }
