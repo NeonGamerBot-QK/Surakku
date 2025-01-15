@@ -63,3 +63,9 @@ export function createPopup(el: HTMLElement) {
   });
   form.append(el);
 }
+
+export function createAlertPopup(text: string) {
+  const p = document.createElement('p')
+  p.innerHTML = text
+  return createPopup(p)
+}

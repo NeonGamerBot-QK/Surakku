@@ -4,7 +4,7 @@
 - [ ] Get it approved by chrome & firefox
 - [ ] ~~get domain in browser buddy challange (i think thats the name of it)~~ a little to late
 - [ ] Get some more plugins added -- 10%
-- [ ] Work on user api (no types for first relase)
+- [ ] ~~Work on user api (no types for first relase)~~ n o
 - [ ] Learn about webpack chunks [guide](https://gist.github.com/0xdevalias/8c621c5d09d780b1d321bfdb86d67cdd#react-internals)
 - - [ ] do the same above for **React**, **ReactDOM**, **Redux** and **React Modal**
 - [ ] for user deccorations
@@ -13,3 +13,5 @@
 - [ ] review db connection? (or make your own) ( soon)
 - [ ] convert the intervals to mutationobserver
 - [x] unhide the messages hidden after 90 days
+- [x] use slack oauth api to send blocks
+- [ ] use pronouns.cc or pronouns.page for plugin

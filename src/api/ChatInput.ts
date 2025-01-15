@@ -39,12 +39,3 @@ export function patchMessageBar(id: string, cb: (str?: string) => void) {
       ?.addEventListener("click", cb);
   }
 }
-// let oldValue:string | null = null;
-// export function patchMessageBar(id: string, cb: (str?: string) => void) {
-//   let messageBar = document.querySelector('[aria-describedby*="context_bar_text"]');
-//   if (!oldValue) oldValue = messageBar?.innerText;
-//   if(oldValue !== messageBar?.innerText) {
-//     oldValue = messageBar?.innerText;
-//     cb(oldValue);
-//   }
-// }

@@ -3,6 +3,7 @@ import { patchMessageBar } from "../api/ChatInput";
 import { Plugin } from "../util";
 import { addWatcher } from "../util/DontLeakRam";
 import { CreateMessageButton } from "../util/MessageButton";
+import { createAlertPopup, createPopup } from "../util/popup";
 
 /**
  * all misc plugins
@@ -323,6 +324,7 @@ export default [
       });
     },
   },
+
   {
     name: "Remove message blur",
     description:
@@ -422,14 +424,12 @@ export default [
           node.childNodes.forEach(replace_text);
         }
       }
-
       var title = document.title;
       for (var [target_word, replacement_word] of Object.entries(
         replacements,
       )) {
         title = title.replace(target_word, replacement_word);
       }
-
       var observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
@@ -458,34 +458,40 @@ export default [
           const utoken = window.Surakku.plugins
             .flat()
             .find((e) => e.name == "Use slack app").custom_properties.token;
-          if (!utoken) return alert("No token found");
+          if (!utoken) return createAlertPopup(`No user token found!`)
+
           // use the message as a json payload
           // yes
           // im not lying
           //@ts-ignore
           const contentRR = document.querySelector(".ql-editor")!.innerText;
+          if(!contentRR) return createAlertPopup(`Please have valid json data in your message box`)
           try {
             const data = JSON.parse(contentRR);
-            alert(`Wow i have ${data.length} blocks`);
+            // alert(`Wow i have ${data.length} blocks`);
             //@ts-ignore
             //FIXME: CORS RAAAAA (current error is it no send to channel, and is stuck on "pending")
             await window.send_fetch(
-              "https://api.saahild.com/api/slack/chat.postMessage",
+              "https://api.saahild.com/api/slack_m/send",
               {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${utoken}`,
+                  Authorization: utoken,
                 },
                 body: JSON.stringify({
                   //@ts-ignore so its always truthy? yes it is
-                  channel: "C07LGLUTNH2" || location.pathname.split("/")[3],
-                  text: `test`,
+                  channel: location.pathname.split("/")[3],
+                  // text: `testing from send blocks button`,
+                  blocks: data
                 }),
               },
-            );
+            ).then((d:any)=>console.log(`jsond`, d));
+            //@ts-ignore
+            document.querySelector(".ql-editor")!.innerText = ""
           } catch (e: any) {
-            alert(e.message);
+            createAlertPopup(e.message! + `
+              If you need help creating blocks u can try testing them on https://app.slack.com/block-kit-builder !`)
           }
         },
       );

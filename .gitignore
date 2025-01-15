@@ -8,3 +8,5 @@ target
 *.zip
 slack
 !s.zip
+t.ts
+t2.ts
