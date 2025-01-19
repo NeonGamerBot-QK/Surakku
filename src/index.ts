@@ -56,7 +56,7 @@ window.addEventListener("load", async () => {
   addWatcher(watchSideBarChannels);
   addWatcher(watchForSettings);
   addWatcher(watchForMessageModal);
-  addWatcher(watchUsersForNames)
+  addWatcher(watchUsersForNames);
   console.log(0);
   listenForAllInters();
   console.log(1);
