@@ -4,7 +4,7 @@ import { Plugin } from "../util";
 import { addWatcher } from "../util/DontLeakRam";
 import { CreateMessageButton } from "../util/MessageButton";
 import { createAlertPopup, createPopup } from "../util/popup";
-import { CreateUserNameModification} from "../util/ModifyUsername";
+import { CreateUserNameModification } from "../util/ModifyUsername";
 /**
  * all misc plugins
  *
@@ -508,34 +508,45 @@ export default [
     author: [devs.neon],
     async execute() {
       const _this = this;
-       //@ts-ignore
-       const utoken = window.Surakku.plugins
-       .flat()
-       .find((e) => e.name == "Use slack app").custom_properties.token;
-       async function getPronouns(user_id: string) {
-        if(!_this.custom_properties!.cache.has(user_id)) {
+      //@ts-ignore
+      const utoken = window.Surakku.plugins
+        .flat()
+        .find((e) => e.name == "Use slack app").custom_properties.token;
+      async function getPronouns(user_id: string) {
+        if (!_this.custom_properties!.cache.has(user_id)) {
           //@ts-ignore
-          _this.custom_properties!.cache.set(user_id, await window.send_fetch(`https://api.saahild.com/api/slack_m/pronouns?user=${user_id}`, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: utoken
-            }
-            //@ts-ignore
-          }).then(r=>JSON.parse(r).pronouns))
+          _this.custom_properties!.cache.set(
+            user_id,
+            await window
+              .send_fetch(
+                `https://api.saahild.com/api/slack_m/pronouns?user=${user_id}`,
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: utoken,
+                  },
+                  //@ts-ignore
+                },
+              )
+              .then((r) => JSON.parse(r).pronouns),
+          );
         }
-        return _this.custom_properties!.cache.get(user_id)
-       }
-      CreateUserNameModification(async (user) => {
-        //@ts-ignore
-        const pronouns = await getPronouns(user.id);
-        console.log(pronouns, `spr`)
-        debugger;
-        return `${user.display_name} (${pronouns})`;
-      }, () => true)
+        return _this.custom_properties!.cache.get(user_id);
+      }
+      CreateUserNameModification(
+        async (user) => {
+          //@ts-ignore
+          const pronouns = await getPronouns(user.id);
+          console.log(pronouns, `spr`);
+          debugger;
+          return `${user.display_name} (${pronouns})`;
+        },
+        () => true,
+      );
     },
     custom_properties: {
       // yes im caching them, i am not ddossing my own api
-      cache: new Map()
-    }
-  }
+      cache: new Map(),
+    },
+  },
 ] satisfies Plugin[];
