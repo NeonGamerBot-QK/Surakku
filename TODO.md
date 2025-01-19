@@ -11,7 +11,7 @@
 - - [ ] get the at https://decor.fieryflames.dev/api/decorations/presets
 - - [ ] get png version at https://ugc.decor.fieryflames.dev/{hash}.png eg: https://ugc.decor.fieryflames.dev/fa27a98f9e79f31e12b972753feab7e4.png
 - [ ] review db connection? (or make your own) ( soon)
-- [ ] convert the intervals to mutationobserver
+- [x] convert the intervals to mutationobserver
 - [x] unhide the messages hidden after 90 days
 - [x] use slack oauth api to send blocks
-- [ ] use pronouns.cc or pronouns.page for plugin
+- [x] ~~use pronouns.cc or pronouns.page for plugin~~ no we are using s l a ck. yes SLACK

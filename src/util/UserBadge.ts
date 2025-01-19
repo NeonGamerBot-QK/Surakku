@@ -14,6 +14,7 @@ export function watchUsersForBadges() {
           "img",
         )!.src;
     } catch (e) {}
+    
     return d;
   });
   for (const badge of badges) {

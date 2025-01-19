@@ -10,6 +10,7 @@ import { watchSideBarChannels } from "./api/ChannelPatch";
 import { addWatcher, listenForAllInters } from "./util/DontLeakRam";
 import { watchForSettings } from "./api/Settings";
 import { watchForMessageModal } from "./util/MessageButton";
+import { watchUsersForNames } from "./util/ModifyUsername";
 // bind console.log to
 const log0 = console.log;
 
@@ -55,6 +56,7 @@ window.addEventListener("load", async () => {
   addWatcher(watchSideBarChannels);
   addWatcher(watchForSettings);
   addWatcher(watchForMessageModal);
+  addWatcher(watchUsersForNames)
   console.log(0);
   listenForAllInters();
   console.log(1);

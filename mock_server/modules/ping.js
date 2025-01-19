@@ -12,9 +12,3 @@ module.exports = (router, db) => {
     res.json({ visits });
   });
 };
-module.exports.socket_handle = (socket, io, db) => {
-  socket.emit("ping");
-  socket.on("pong", () => {
-    socket.emit("ping");
-  });
-};
