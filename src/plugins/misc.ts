@@ -537,9 +537,10 @@ export default [
         async (user) => {
           //@ts-ignore
           const pronouns = await getPronouns(user.id);
-          console.log(pronouns, `spr`);
-          debugger;
-          return `${user.display_name} (${pronouns})`;
+          // console.log(pronouns, `spr`);
+          // debugger;
+          if(pronouns) return `${user.display_name} (${pronouns})`;
+          return user.display_name;
         },
         () => true,
       );

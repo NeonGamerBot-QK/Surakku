@@ -1,11 +1,11 @@
-- [ ] Create injection somehow
+- [x] ~~Create injection somehow~~ no
 - [ ] Look at [Vencord](https://github.com/Vendicated/Vencord), Better Discord, Redux injection,[Shelter](https://github.com/uwu/shelter/) Other discord mods
 - [x] Make it build
 - [ ] Get it approved by chrome & firefox
-- [ ] ~~get domain in browser buddy challange (i think thats the name of it)~~ a little to late
-- [ ] Get some more plugins added -- 10%
-- [ ] ~~Work on user api (no types for first relase)~~ n o
-- [ ] Learn about webpack chunks [guide](https://gist.github.com/0xdevalias/8c621c5d09d780b1d321bfdb86d67cdd#react-internals)
+- [x] ~~get domain in browser buddy challange (i think thats the name of it)~~ a little to late
+- [ ] Get some more plugins added -- 20%
+- [x] ~~Work on user api (no types for first relase)~~ n o
+- [x] Learn about webpack chunks [guide](https://gist.github.com/0xdevalias/8c621c5d09d780b1d321bfdb86d67cdd#react-internals)
 - - [ ] do the same above for **React**, **ReactDOM**, **Redux** and **React Modal**
 - [ ] for user deccorations
 - - [ ] get the at https://decor.fieryflames.dev/api/decorations/presets

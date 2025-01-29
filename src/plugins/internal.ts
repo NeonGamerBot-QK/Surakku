@@ -15,21 +15,19 @@ import { addWatcher } from "../util/DontLeakRam";
  * For default build, these will all be FORCED turned on and cant be turned off.
  */
 export default [
-  {
-    name: "Owner Badges",
-    description: "Adds a little cool badge to the owner of this plugin :P",
-    author: [devs.neon],
-    async execute() {
-      // what Actually code should look like
-      /**
-       * CreateAdditonalUserBadge(':crown:', 'Owner', 'This plugin is owned by the owner of this plugin :P', (e) => e.user.displayName ==  )
-       */
-      console.log("Owner Badges Plugin Loaded");
-      CreateUserBadge(mydevbadge, `Owner`, `test`, (e) => {
-        return e.id == "U07L45W79E1";
-      });
-    },
-  },
+  // {
+  //   name: "Owner Badges",
+  //   description: "Adds a little cool badge to the owner of this plugin :P",
+  //   author: [devs.neon],
+  //   async execute() {
+  //     // what Actually code should look like
+  //     /**
+  //      * CreateAdditonalUserBadge(':crown:', 'Owner', 'This plugin is owned by the owner of this plugin :P', (e) => e.user.displayName ==  )
+  //      */
+  //     console.log("Owner Badges Plugin Loaded");
+ 
+  //   },
+  // },
   {
     name: "Settings Patch",
     description: "The settings for surakku",
