@@ -539,7 +539,7 @@ export default [
           const pronouns = await getPronouns(user.id);
           // console.log(pronouns, `spr`);
           // debugger;
-          if(pronouns) return `${user.display_name} (${pronouns})`;
+          if (pronouns) return `${user.display_name} (${pronouns})`;
           return user.display_name;
         },
         () => true,
